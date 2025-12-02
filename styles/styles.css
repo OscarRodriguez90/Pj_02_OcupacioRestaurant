@@ -1,0 +1,446 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+
+header, footer {
+    background: rgba(58, 58, 58, 0.95);
+    color: #fff200;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header span {
+  font-weight: bold;
+}
+
+footer {
+  font-size: 14px;
+  justify-content: center;
+}
+
+.html-login, .body-login {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #545557;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+
+.container {
+  background-image: url('./../img/fondo.jpg');
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  background-position: center;
+  width: 97%; 
+  height: 97%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  box-shadow: 0 40px 40px rgba(0,0,0,0.08);
+}
+
+
+.izq {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #e9ecef; */
+}
+
+
+.der {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  /* padding: 2rem; */
+  padding-right: 100px;
+  width: 100%;
+  min-height: 95%;
+  box-shadow: 0 40px 40px rgba(0,0,0,0.08);
+  /* background: #fff; */
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+  
+  /* BOTON CERRAR SESION */
+  
+.btn-cerrar {
+  background-color: #fff200;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+
+.btn-cerrar:hover {
+  box-shadow: 0px 0px 30px 1px rgba(255, 255, 0, 0.8);
+}
+
+/* BOTON VOLVER */
+
+  .button-volver {
+    background: #666;
+    color: white;
+}
+
+.button-volver:hover {
+    background: #444;
+    color: #fff200;
+}
+
+
+/* CLASES DEL FORM */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 0.4em;
+  background-color: #171717;
+  border-radius: 20px;
+}
+
+#heading {
+  text-align: center;
+  margin: 2em;
+  color: rgb(255, 255, 0);
+  font-size: 1.2em;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 25px;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #171717;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: #D9D9D9;
+}
+
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: rgb(255, 255, 0);
+}
+
+.form .btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 2.5em;
+}
+
+.button1 {
+  padding: 0.5em;
+  padding-left: 1.1em;
+  padding-right: 1.1em;
+  border-radius: 5px;
+  margin-right: 0.5em;
+  border: none;
+  outline: none;
+  transition: .4s ease-in-out;
+  background-image: linear-gradient(163deg, #fff200 0%, #ff0000 100%);
+  color: rgb(0, 0, 0);
+}
+
+.button1:hover {
+  background-image: linear-gradient(163deg, #a04d00fa 0%, #d18f00 100%);
+  color: rgb(255, 255, 0);
+}
+
+.button2 {
+  padding: 0.5em;
+  padding-left: 2.3em;
+  padding-right: 2.3em;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: .4s ease-in-out;
+  background-image: linear-gradient(163deg, #fff200 0%, #ff0000 100%);
+  color: rgb(0, 0, 0);
+}
+
+.button2:hover {
+  background-image: linear-gradient(163deg, #a04d00fa 0%, #d18f00 100%);
+  color: rgb(255, 255, 0);
+}
+
+.button3 {
+  margin-bottom: 3em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: .4s ease-in-out;
+  background-image: linear-gradient(163deg, #fff200 0%, #ff0000 100%);
+  color: rgb(0, 0, 0);
+}
+
+.button3:hover {
+  background-image: linear-gradient(163deg, #a04d00fa 0%, #d18f00 100%);
+  color: rgb(255, 255, 255);
+}
+
+.card {
+  background-image: linear-gradient(163deg, #fff200 0%, #ff0000 100%);
+  border-radius: 22px;
+  transition: all .3s;
+}
+
+.card2 {
+  border-radius: 0;
+  transition: all .2s;
+}
+
+.card2:hover {
+  transform: scale(0.98);
+  border-radius: 20px;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 100px 1px rgba(255, 255, 0, 0.8);
+}
+
+
+
+
+/* ||||||||||||||||||||||||||||| ESTILOS ERRORES ||||||||||||||||||||||||| */
+
+.error-message {
+  color: #ff3333;
+  font-size: 0.8em;
+  margin-top: 5px;
+  margin-left: 35px;
+  text-align: left;
+}
+
+.field.error {
+  box-shadow: inset 2px 5px 10px rgb(255, 51, 51);
+}
+
+
+/* ||||||||||||||||||||||||||||||||| SELECTOR DE SALA ||||||||||||||||||||||||||||||| */
+
+
+.contenedor-selector-sala {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-grow: 1;
+  /* separa los botones de los márgenes izquierdo/derecho */
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.boton-sala {
+  /* background-color: #ccc; */
+  width: 33%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+#boton-sala1 {
+  /* background-color: #ff0000; */
+  background-image: url(./../img/Logo_Comedor.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#boton-sala1:hover {
+  box-shadow: 0px 0px 50px 1px rgba(255, 0, 0, 0.8);
+}
+
+#boton-sala2 {
+  /* background-color: #53d56dff; */
+  background-image: url(./../img/Logo_Terraza.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#boton-sala2:hover {
+  box-shadow: 0px 0px 50px 1px rgba(0, 255, 0, 0.8);
+}
+#boton-sala3 {
+  /* background-color: #fff200; */
+  background-image: url(./../img/Logo_SalaPrivada.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#boton-sala3:hover {
+  box-shadow: 0px 0px 50px 1px rgba(255, 255, 0, 0.8);
+}
+
+.boton-sala:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.boton-sala img {
+  width: 70px;
+  height: 70px;
+}
+
+
+/* ||||||||||||||||||||||||||||||||||| PAGINA DE REGISTRO ||||||||||||||||||||||||||||||||||||| */
+
+
+.body-registro {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #545557;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-registro p {
+  color: #ff8080;
+}
+
+.container-registro {
+  background-image: url('../img/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FORM COMPACTO CON FONDO VISIBLE */
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 1em 1.2em;
+  background-color: rgba(23, 23, 23, 0.95);
+  border-radius: 12px;
+  width: 280px;
+  border: 2px solid #fff200;
+  backdrop-filter: blur(5px);
+}
+
+#heading-registro {
+  text-align: center;
+  margin: 0.2em 0 0.8em 0;
+  color: rgb(255, 255, 0);
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2px;
+}
+
+.label-registro {
+  color: rgb(255, 255, 0);
+  font-size: 0.75em;
+  margin-left: 8px;
+  margin-bottom: 1px;
+}
+
+.field-registro {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0.4em 0.6em;
+  border: none;
+  outline: none;
+  background-color: rgba(23, 23, 23, 0.8);
+  box-shadow: inset 1px 2px 4px rgb(5, 5, 5);
+}
+
+.input-field-registro {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: rgb(255, 255, 0);
+  font-size: 0.8em;
+}
+
+.input-field-registro::placeholder {
+  color: #666;
+  font-size: 0.75em;
+}
+
+
+.btn-registro {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 1em;
+}
+
+.button-registro {
+  padding: 0.4em 1em;
+  border-radius: 5px;
+  border: none;
+  background: #fff200;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8em;
+  transition: all 0.2s;
+}
+
+.button-registro:hover {
+  background: #d18f00;
+  color: rgb(255, 255, 0);
+  transform: translateY(-1px);
+}
+

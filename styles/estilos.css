@@ -1,0 +1,1291 @@
+
+/* ---------------- TIPOGRAFÍA Y BODY ---------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* BODYS SALAS */
+
+.body-sinnoh {
+    background-image: url('./../img/regiones/Sinnoh.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-unova {
+    background-image: url('./../img/regiones/Unova.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-kanto {
+    background-image: url('./../img/regiones/Kanto.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
+
+.body-johto {
+    background-image: url('./../img/regiones/Johto.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-hoenn {
+    background-image: url('./../img/regiones/Hoenn.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-alola {
+    background-image: url('./../img/regiones/Alola.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-galar {
+    background-image: url('./../img/regiones/Galar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-kalos {
+    background-image: url('./../img/regiones/Kalos.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-paldea {
+    background-image: url('./../img/regiones/Paldea.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
+
+/* ||||||||||||||||||||||||||| AZUL ||||||||||||||||||||||||| */
+.body-sinnoh h1,
+.body-hoenn h1,
+.body-galar h1 {
+    color: #2196F3;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-sinnoh .btn, .body-sinnoh .btn-link,
+.body-hoenn .btn, .body-hoenn .btn-link,
+.body-galar .btn, .body-galar .btn-link {
+    background: #2196F3;
+    color: #fff;
+}
+
+.body-sinnoh .btn:hover, .body-sinnoh .btn-link:hover,
+.body-hoenn .btn:hover, .body-hoenn .btn-link:hover,
+.body-galar .btn:hover, .body-galar .btn-link:hover {
+    background: #1976D2;
+}
+
+.body-sinnoh .btn-link[disabled],
+.body-hoenn .btn-link[disabled],
+.body-galar .btn-link[disabled] {
+    background: #13589dff;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-sinnoh .info-sala h2,
+.body-hoenn .info-sala h2,
+.body-galar .info-sala h2 {
+    color: #2196F3;
+    border-bottom: 2px solid #2196F3;
+}
+
+.body-sinnoh .btn-toggle,
+.body-hoenn .btn-toggle,
+.body-galar .btn-toggle {
+    background: #2196F3;
+    color: #fff;
+}
+
+.body-sinnoh .btn-toggle:hover,
+.body-hoenn .btn-toggle:hover,
+.body-galar .btn-toggle:hover {
+    background: #1976D2;
+}
+
+.body-sinnoh .volver a,
+.body-hoenn .volver a,
+.body-galar .volver a {
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+.body-sinnoh .volver a:hover, 
+.body-hoenn .volver a:hover,
+.body-galar .volver a:hover {
+    background: #2196F3;
+    color: #fff;
+}
+
+
+/* ||||||||||||||||||||||||||| AMARILLO ||||||||||||||||||||||||| */
+.body-unova h1,
+.body-alola h1,
+.body-kanto h1 {
+    color: #fff200;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-unova .btn, .body-unova .btn-link,
+.body-alola .btn, .body-alola .btn-link,
+.body-kanto .btn, .body-kanto .btn-link {
+    background: #fff200;
+    color: #222;
+}
+
+.body-unova .btn:hover, .body-unova .btn-link:hover,
+.body-alola .btn:hover, .body-alola .btn-link:hover,
+.body-kanto .btn:hover, .body-kanto .btn-link:hover {
+    background: #e6b800;
+}
+
+.body-unova .info-sala h2,
+.body-alola .info-sala h2,
+.body-kanto .info-sala h2 {
+    color: #fff200;
+    border-bottom: 2px solid #fff200;
+}
+
+.body-unova .btn-toggle,
+.body-alola .btn-toggle,
+.body-kanto .btn-toggle {
+    background: #fff200;
+    color: #222;
+}
+
+.body-unova .btn-toggle:hover,
+.body-alola .btn-toggle:hover,
+.body-kanto .btn-toggle:hover {
+    background: #e6b800;
+}
+
+.body-unova .volver a,
+.body-alola .volver a,
+.body-kanto .volver a {
+    color: #fff200;
+    border: 2px solid #fff200;
+}
+
+.body-unova .volver a:hover,
+.body-alola .volver a:hover,
+.body-kanto .volver a:hover {
+    background: #fff200;
+    color: #222;
+}
+
+
+/* ||||||||||||||||||||||||||| ROSA ||||||||||||||||||||||||| */
+.body-kalos h1,
+.body-johto h1 {
+    color: #E91E63;
+}
+
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-kalos .btn, .body-kalos .btn-link,
+.body-johto .btn, .body-johto .btn-link {
+    background: #E91E63;
+    color: #fff;
+}
+
+.body-kalos .btn:hover, .body-kalos .btn-link:hover,
+.body-johto .btn:hover, .body-johto .btn-link:hover {
+    background: #C2185B;
+}
+
+.body-kalos .btn-link[disabled],
+.body-johto .btn-link[disabled] {
+    background: #AD1457;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-kalos .info-sala h2,
+.body-johto .info-sala h2 {
+    color: #E91E63;
+    margin-top: 0;
+    border-bottom: 2px solid #E91E63;
+    padding-bottom: 10px;
+}
+
+.body-kalos .btn-toggle,
+.body-johto .btn-toggle {
+    background: #E91E63;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.body-kalos .btn-toggle:hover,
+.body-johto .btn-toggle:hover {
+    background: #C2185B;
+}
+
+.body-kalos .volver a,
+.body-johto .volver a {
+    display: inline-block;
+    color: #E91E63;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #E91E63;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.body-kalos .volver a:hover,
+.body-johto .volver a:hover {
+    background: #E91E63;
+    color: #fff;
+}
+
+
+/* ||||||||||||||||||||||||||| MORADO ||||||||||||||||||||||||| */
+.body-paldea h1 {
+    color: #9C27B0;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-paldea .btn, .body-paldea .btn-link {
+    
+    background: #9C27B0;
+    color: #fff;
+}
+
+.body-paldea .btn:hover, .body-paldea .btn-link:hover {
+    background: #7B1FA2;
+}
+
+.body-paldea .btn-link[disabled] {
+    background: #6A1B9A;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-paldea .info-sala h2 {
+    color: #9C27B0;
+    border-bottom: 2px solid #9C27B0;
+}
+
+.body-paldea .btn-toggle {
+    background: #9C27B0;
+    color: #fff;
+}
+
+.body-paldea .btn-toggle:hover {
+    background: #7B1FA2;
+}
+
+.body-paldea .volver a {
+    color: #9C27B0;
+    border: 2px solid #9C27B0;
+}
+
+.body-paldea .volver a:hover {
+    background: #9C27B0;
+    color: #fff;
+}
+
+
+
+
+
+
+
+header, footer {
+    background: rgba(58, 58, 58, 0.95);
+    color: #fff200;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header span {
+    font-weight: bold;
+}
+footer {
+    font-size: 14px;
+    justify-content: center;
+}
+
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.btn, .btn-link {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 12px 25px;
+    cursor: pointer;
+    /* background: #f8c300; */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #222;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.btn-link[disabled] {
+    /* background: #d4a700; */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+.btn-cerrar {
+    background-color: #fff200;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn-cerrar:hover {
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 0, 0.8);
+}
+
+
+/* ---------------- SALA BOTONES ---------------- */
+.sala-buttons {
+    text-align: center;
+    /* margin: 20px 0; */
+    padding: 10px;
+    background: rgba(68, 68, 68, 0.85);
+}
+
+/* ---------------- CONTENEDOR PRINCIPAL ---------------- */
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ---------------- PANEL IZQUIERDO ---------------- */
+.info-sala {
+    flex: 1;
+    max-width: 340px;
+    background: rgba(68, 68, 68, 0.75);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    min-height: 260px;
+}
+
+.info-sala h2 {
+    /* color: #f8c300; */
+    margin-top: 0;
+    /* border-bottom: 2px solid #f8c300; */
+    padding-bottom: 10px;
+}
+
+/* ---------------- MESAS ---------------- */
+.mesas-container {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    background: rgba(85, 85, 85, 0.65);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    min-height: 400px;
+}
+
+.mesa {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all .15s;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    color: #222;
+    text-decoration: none;
+}
+
+.mesa:hover {
+    transform: translateY(-4px);
+}
+
+.mesa.libre {
+    background: rgba(107, 207, 127, 0.85);
+    color: #0b2b12;
+}
+
+.mesa.ocupada {
+    background: rgba(255, 107, 107, 0.85);
+    color: #fff;
+}
+
+.detalle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 6px;
+    color: inherit;
+}
+
+.estado-mesa {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: normal;
+    color: inherit;
+}
+
+.btn-toggle {
+    /* background: #f8c300; */
+    /* color: #222; */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-toggle:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+/* ---------------- VOLVER ---------------- */
+.volver {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.volver a {
+    display: inline-block;
+    /* color: #f8c300; */
+    text-decoration: none;
+    padding: 10px 20px;
+    /* border: 2px solid #f8c300; */
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+/* ---------------- BARRA DE FILTROS ---------------- */
+.filtros-bar {
+    background: rgba(68, 68, 68, 0.85);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.filtro-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filtro-label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.filtro-botones {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+}
+
+.filtro-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.filtro-activo {
+    background: rgba(255, 242, 0, 0.8);
+    color: #222;
+    border-color: rgba(255, 242, 0, 0.6);
+    font-weight: bold;
+}
+
+.filtro-limpiar {
+    background: rgba(255, 107, 107, 0.7);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.filtro-limpiar:hover {
+    background: rgba(255, 107, 107, 0.9);
+}
+
+/* Estilos específicos por región para los filtros activos */
+.body-sinnoh .filtro-activo,
+.body-hoenn .filtro-activo,
+.body-galar .filtro-activo {
+    background: rgba(33, 150, 243, 0.8);
+    color: #fff;
+}
+
+.body-unova .filtro-activo,
+.body-alola .filtro-activo,
+.body-kanto .filtro-activo {
+    background: rgba(255, 242, 0, 0.8);
+    color: #222;
+}
+
+.body-kalos .filtro-activo,
+.body-johto .filtro-activo {
+    background: rgba(233, 30, 99, 0.8);
+    color: #fff;
+}
+
+.body-paldea .filtro-activo {
+    background: rgba(156, 39, 176, 0.8);
+    color: #fff;
+}
+/* =============================================== */
+/* NUEVO RESPONSIVE MEJORADO                      */
+/* =============================================== */
+/* ---------------- TIPOGRAFÍA Y BODY ---------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* BODYS SALAS */
+
+.body-sinnoh {
+    background-image: url('./../img/regiones/Sinnoh.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-unova {
+    background-image: url('./../img/regiones/Unova.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-kanto {
+    background-image: url('./../img/regiones/Kanto.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
+
+.body-johto {
+    background-image: url('./../img/regiones/Johto.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-hoenn {
+    background-image: url('./../img/regiones/Hoenn.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-alola {
+    background-image: url('./../img/regiones/Alola.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-galar {
+    background-image: url('./../img/regiones/Galar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-kalos {
+    background-image: url('./../img/regiones/Kalos.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.body-paldea {
+    background-image: url('./../img/regiones/Paldea.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
+
+/* ||||||||||||||||||||||||||| AZUL ||||||||||||||||||||||||| */
+.body-sinnoh h1,
+.body-hoenn h1,
+.body-galar h1 {
+    color: #2196F3;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-sinnoh .btn, .body-sinnoh .btn-link,
+.body-hoenn .btn, .body-hoenn .btn-link,
+.body-galar .btn, .body-galar .btn-link {
+    background: #2196F3;
+    color: #fff;
+}
+
+.body-sinnoh .btn:hover, .body-sinnoh .btn-link:hover,
+.body-hoenn .btn:hover, .body-hoenn .btn-link:hover,
+.body-galar .btn:hover, .body-galar .btn-link:hover {
+    background: #1976D2;
+}
+
+.body-sinnoh .btn-link[disabled],
+.body-hoenn .btn-link[disabled],
+.body-galar .btn-link[disabled] {
+    background: #13589dff;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-sinnoh .info-sala h2,
+.body-hoenn .info-sala h2,
+.body-galar .info-sala h2 {
+    color: #2196F3;
+    border-bottom: 2px solid #2196F3;
+}
+
+.body-sinnoh .btn-toggle,
+.body-hoenn .btn-toggle,
+.body-galar .btn-toggle {
+    background: #2196F3;
+    color: #fff;
+}
+
+.body-sinnoh .btn-toggle:hover,
+.body-hoenn .btn-toggle:hover,
+.body-galar .btn-toggle:hover {
+    background: #1976D2;
+}
+
+.body-sinnoh .volver a,
+.body-hoenn .volver a,
+.body-galar .volver a {
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+.body-sinnoh .volver a:hover, 
+.body-hoenn .volver a:hover,
+.body-galar .volver a:hover {
+    background: #2196F3;
+    color: #fff;
+}
+
+
+/* ||||||||||||||||||||||||||| AMARILLO ||||||||||||||||||||||||| */
+.body-unova h1,
+.body-alola h1,
+.body-kanto h1 {
+    color: #fff200;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-unova .btn, .body-unova .btn-link,
+.body-alola .btn, .body-alola .btn-link,
+.body-kanto .btn, .body-kanto .btn-link {
+    background: #fff200;
+    color: #222;
+}
+
+.body-unova .btn:hover, .body-unova .btn-link:hover,
+.body-alola .btn:hover, .body-alola .btn-link:hover,
+.body-kanto .btn:hover, .body-kanto .btn-link:hover {
+    background: #e6b800;
+}
+
+.body-unova .info-sala h2,
+.body-alola .info-sala h2,
+.body-kanto .info-sala h2 {
+    color: #fff200;
+    border-bottom: 2px solid #fff200;
+}
+
+.body-unova .btn-toggle,
+.body-alola .btn-toggle,
+.body-kanto .btn-toggle {
+    background: #fff200;
+    color: #222;
+}
+
+.body-unova .btn-toggle:hover,
+.body-alola .btn-toggle:hover,
+.body-kanto .btn-toggle:hover {
+    background: #e6b800;
+}
+
+.body-unova .volver a,
+.body-alola .volver a,
+.body-kanto .volver a {
+    color: #fff200;
+    border: 2px solid #fff200;
+}
+
+.body-unova .volver a:hover,
+.body-alola .volver a:hover,
+.body-kanto .volver a:hover {
+    background: #fff200;
+    color: #222;
+}
+
+
+/* ||||||||||||||||||||||||||| ROSA ||||||||||||||||||||||||| */
+.body-kalos h1,
+.body-johto h1 {
+    color: #E91E63;
+}
+
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-kalos .btn, .body-kalos .btn-link,
+.body-johto .btn, .body-johto .btn-link {
+    background: #E91E63;
+    color: #fff;
+}
+
+.body-kalos .btn:hover, .body-kalos .btn-link:hover,
+.body-johto .btn:hover, .body-johto .btn-link:hover {
+    background: #C2185B;
+}
+
+.body-kalos .btn-link[disabled],
+.body-johto .btn-link[disabled] {
+    background: #AD1457;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-kalos .info-sala h2,
+.body-johto .info-sala h2 {
+    color: #E91E63;
+    margin-top: 0;
+    border-bottom: 2px solid #E91E63;
+    padding-bottom: 10px;
+}
+
+.body-kalos .btn-toggle,
+.body-johto .btn-toggle {
+    background: #E91E63;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.body-kalos .btn-toggle:hover,
+.body-johto .btn-toggle:hover {
+    background: #C2185B;
+}
+
+.body-kalos .volver a,
+.body-johto .volver a {
+    display: inline-block;
+    color: #E91E63;
+    text-decoration: none;
+
+    padding: 10px 20px;
+    border: 2px solid #E91E63;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.body-kalos .volver a:hover,
+.body-johto .volver a:hover {
+    background: #E91E63;
+    color: #fff;
+}
+
+
+/* ||||||||||||||||||||||||||| MORADO ||||||||||||||||||||||||| */
+.body-paldea h1 {
+    color: #9C27B0;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.body-paldea .btn, .body-paldea .btn-link {
+    
+    background: #9C27B0;
+    color: #fff;
+}
+
+.body-paldea .btn:hover, .body-paldea .btn-link:hover {
+    background: #7B1FA2;
+}
+
+.body-paldea .btn-link[disabled] {
+    background: #6A1B9A;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.body-paldea .info-sala h2 {
+    color: #9C27B0;
+    border-bottom: 2px solid #9C27B0;
+}
+
+.body-paldea .btn-toggle {
+    background: #9C27B0;
+    color: #fff;
+}
+
+.body-paldea .btn-toggle:hover {
+    background: #7B1FA2;
+}
+
+.body-paldea .volver a {
+    color: #9C27B0;
+    border: 2px solid #9C27B0;
+}
+
+.body-paldea .volver a:hover {
+    background: #9C27B0;
+    color: #fff;
+}
+
+header, footer {
+    background: rgba(58, 58, 58, 0.95);
+    color: #fff200;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header span {
+    font-weight: bold;
+}
+footer {
+    font-size: 14px;
+    justify-content: center;
+}
+
+/* ---------------- BOTONES Y ENLACES ---------------- */
+.btn, .btn-link {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 12px 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #222;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.btn-link[disabled] {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-cerrar {
+    background-color: #fff200;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn-cerrar:hover {
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 0, 0.8);
+}
+
+/* ---------------- SALA BOTONES ---------------- */
+.sala-buttons {
+    text-align: center;
+    padding: 10px;
+    background: rgba(68, 68, 68, 0.85);
+}
+
+/* ---------------- CONTENEDOR PRINCIPAL ---------------- */
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ---------------- PANEL IZQUIERDO ---------------- */
+.info-sala {
+    flex: 1;
+    max-width: 340px;
+    background: rgba(68, 68, 68, 0.75);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    min-height: 260px;
+}
+
+.info-sala h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+}
+
+/* ---------------- MESAS ---------------- */
+.mesas-container {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    background: rgba(85, 85, 85, 0.65);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    min-height: 400px;
+}
+
+.mesa {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all .15s;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    color: #222;
+    text-decoration: none;
+}
+
+.mesa:hover {
+    transform: translateY(-4px);
+}
+
+.mesa.libre {
+    background: rgba(107, 207, 127, 0.85);
+    color: #0b2b12;
+}
+
+.mesa.ocupada {
+    background: rgba(255, 107, 107, 0.85);
+    color: #fff;
+}
+
+.detalle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 6px;
+    color: inherit;
+}
+
+.estado-mesa {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: normal;
+    color: inherit;
+}
+
+.btn-toggle {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-toggle:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+/* ---------------- VOLVER ---------------- */
+.volver {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.volver a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+/* ---------------- BARRA DE FILTROS ---------------- */
+.filtros-bar {
+    background: rgba(68, 68, 68, 0.85);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.filtro-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filtro-label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.filtro-botones {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+}
+
+.filtro-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.filtro-activo {
+    background: rgba(255, 242, 0, 0.8);
+    color: #222;
+    border-color: rgba(255, 242, 0, 0.6);
+    font-weight: bold;
+}
+
+.filtro-limpiar {
+    background: rgba(255, 107, 107, 0.7);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.filtro-limpiar:hover {
+    background: rgba(255, 107, 107, 0.9);
+}
+
+/* Estilos específicos por región para los filtros activos */
+.body-sinnoh .filtro-activo,
+.body-hoenn .filtro-activo,
+.body-galar .filtro-activo {
+    background: rgba(33, 150, 243, 0.8);
+    color: #fff;
+}
+
+.body-unova .filtro-activo,
+.body-alola .filtro-activo,
+.body-kanto .filtro-activo {
+    background: rgba(255, 242, 0, 0.8);
+    color: #222;
+}
+
+.body-kalos .filtro-activo,
+.body-johto .filtro-activo {
+    background: rgba(233, 30, 99, 0.8);
+    color: #fff;
+}
+
+.body-paldea .filtro-activo {
+    background: rgba(156, 39, 176, 0.8);
+    color: #fff;
+}
+
+/* =============================================== */
+/* NUEVO RESPONSIVE MEJORADO (tuyo original)       */
+/* =============================================== */
+/* ====================================================== */
+/* === REGLAS GLOBALES PARA ESTABILIDAD DEL RESPONSIVE === */
+/* ====================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Espacio y simetría en las mesas */
+.mesas-container {
+    gap: 16px !important;           
+    padding: 16px !important;       
+}
+
+.mesas-container .mesa {
+    box-sizing: border-box;
+    border-radius: 10px;            
+}
+
+
+/* ====================================================== */
+/* =============== DESKTOP (3 COLUMNAS) ================= */
+/* ====================================================== */
+@media (min-width: 901px) {
+
+    .mesas-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 16px;
+    }
+}
+
+
+/* ====================================================== */
+/* =============== RESPONSIVE (2 COLUMNAS) =============== */
+/* ====================================================== */
+@media (max-width: 900px) {
+
+    .contenedor-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;       
+        padding: 20px;
+        gap: 25px;
+    }
+
+    .info-sala {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .mesas-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px !important;
+        padding: 16px !important;
+        width: 100%;
+    }
+
+    .mesas-container .mesa {
+        padding: 12px;
+    }
+}
+
+
+/* ====================================================== */
+/* ============== MOVIL PEQUEÑO (2 COLS) ================ */
+/* ====================================================== */
+@media (max-width: 480px) {
+
+    .contenedor-principal {
+        padding: 15px;
+        gap: 18px;
+    }
+
+    .info-sala {
+        padding: 16px;
+        font-size: 0.95rem;
+    }
+
+    .mesas-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px !important;
+        padding: 12px !important;
+    }
+
+    .mesas-container .mesa {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    .detalle,
+    .estado-mesa {
+        font-size: 0.85rem;
+    }
+
+    
+}
