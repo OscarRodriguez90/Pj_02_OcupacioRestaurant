@@ -1,228 +1,5 @@
 <?php
-session_start();
-
-require_once '../../database/conexion.php';
-
-// Obtener idSala desde GET
-$idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : 0;
-
-if ($idSala <= 0) {
-    header('Location: ../selecciona_sala.php');
-    exit;
-}
-
-// --- 1. CAMBIAR ESTADO DE MESA INDIVIDUAL ---
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idMesa'])) {
-    $idMesa = intval($_POST['idMesa']);
-    $idCamarero = $_SESSION['idCamarero'] ?? null;
-
-    if (!$idCamarero) {
-        header('Location: ../login.php?error=SesionExpirada');
-        exit;
-    }
-
-    try {
-        $stmt = $conn->prepare("SELECT estado FROM mesa WHERE idMesa = :id");
-        $stmt->execute([':id' => $idMesa]);
-        $mesa = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($mesa) {
-            if ($mesa['estado'] === 'libre') {
-                $nuevoEstado = 'ocupada';
-                $upd = $conn->prepare("UPDATE mesa SET estado = :estado WHERE idMesa = :id");
-                $upd->execute([':estado' => $nuevoEstado, ':id' => $idMesa]);
-
-                $insertHist = $conn->prepare(
-                    "INSERT INTO historico (idMesa, idSala, idCamarero, horaOcupacion, horaDesocupacion) VALUES (:idMesa, :idSala, :idCamarero, NOW(), NULL)"
-                );
-                $insertHist->execute([
-                    ':idMesa' => $idMesa,
-                    ':idSala' => $idSala,
-                    ':idCamarero' => $idCamarero
-                ]);
-
-            } else {
-                $stmtHist = $conn->prepare(
-                    "SELECT idCamarero FROM historico WHERE idMesa = :idMesa AND horaDesocupacion IS NULL ORDER BY idHistorico DESC LIMIT 1"
-                );
-                $stmtHist->execute([':idMesa' => $idMesa]);
-                $historico = $stmtHist->fetch(PDO::FETCH_ASSOC);
-
-                if (!$historico || $historico['idCamarero'] != $idCamarero) {
-                    $_SESSION['error'] = "No puedes liberar esta mesa. Solo el camarero que la ocupó puede liberarla.";
-                    header('Location: ./sala.php?select=' . $idMesa . '&idSala=' . $idSala);
-                    exit;
-                }
-
-                $nuevoEstado = 'libre';
-                $upd = $conn->prepare("UPDATE mesa SET estado = :estado WHERE idMesa = :id");
-                $upd->execute([':estado' => $nuevoEstado, ':id' => $idMesa]);
-
-                $updateHist = $conn->prepare(
-                    "UPDATE historico SET horaDesocupacion = NOW() WHERE idMesa = :idMesa AND horaDesocupacion IS NULL ORDER BY idHistorico DESC LIMIT 1"
-                );
-                $updateHist->execute([':idMesa' => $idMesa]);
-            }
-        }
-    } catch (PDOException $e) {
-        $errorMsg = "Error al cambiar estado: " . $e->getMessage();
-    }
-
-    header('Location: ./sala.php?select=' . $idMesa . '&idSala=' . $idSala);
-    exit;
-}
-
-// --- 2. ACTUALIZAR NÚMERO DE SILLAS ---
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actualizar_sillas'])) {
-    $idMesa = intval($_POST['idMesa']);
-    $nuevoNumSillas = intval($_POST['num_sillas']);
-    $idCamarero = $_SESSION['idCamarero'] ?? null;
-
-    if (!$idCamarero) {
-        header('Location: ../login.php?error=SesionExpirada');
-        exit;
-    }
-
-    try {
-        if ($nuevoNumSillas < 1 || $nuevoNumSillas > 10) {
-            $_SESSION['error'] = "El número de sillas debe estar entre 1 y 10";
-            header('Location: ./sala.php?select=' . $idMesa . '&idSala=' . $idSala);
-            exit;
-        }
-
-        $upd = $conn->prepare("UPDATE mesa SET numSillas = :numSillas WHERE idMesa = :id");
-        $upd->execute([':numSillas' => $nuevoNumSillas, ':id' => $idMesa]);
-
-        $_SESSION['success'] = "Número de sillas actualizado correctamente a $nuevoNumSillas";
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Error al actualizar sillas: " . $e->getMessage();
-    }
-
-    header('Location: ./sala.php?select=' . $idMesa . '&idSala=' . $idSala);
-    exit;
-}
-
-// --- 3. CAMBIAR ESTADO DE TODAS LAS MESAS ---
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion_todas'])) {
-    $idCamarero = $_SESSION['idCamarero'] ?? null;
-    if (!$idCamarero) {
-        header('Location: ../login.php?error=SesionExpirada');
-        exit;
-    }
-
-    try {
-        $accion = $_POST['accion_todas'];
-
-        if ($accion === 'ocupar_todas') {
-            $sql = "SELECT idMesa FROM mesa WHERE idSala = :idSala AND estado = 'libre'";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([':idSala' => $idSala]);
-            $mesas_libres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            foreach ($mesas_libres as $mesa) {
-                $upd = $conn->prepare("UPDATE mesa SET estado = 'ocupada' WHERE idMesa = :id");
-                $upd->execute([':id' => $mesa['idMesa']]);
-
-                $insertHist = $conn->prepare(
-                    "INSERT INTO historico (idMesa, idSala, idCamarero, horaOcupacion, horaDesocupacion) VALUES (:idMesa, :idSala, :idCamarero, NOW(), NULL)"
-                );
-                $insertHist->execute([
-                    ':idMesa' => $mesa['idMesa'],
-                    ':idSala' => $idSala,
-                    ':idCamarero' => $idCamarero
-                ]);
-            }
-
-            $_SESSION['success'] = "Todas las mesas libres han sido ocupadas";
-
-        } elseif ($accion === 'liberar_todas') {
-            $sql = "SELECT m.idMesa FROM mesa m INNER JOIN historico h ON m.idMesa = h.idMesa WHERE m.idSala = :idSala AND m.estado = 'ocupada' AND h.horaDesocupacion IS NULL AND h.idCamarero = :idCamarero";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([':idSala' => $idSala, ':idCamarero' => $idCamarero]);
-            $mis_mesas_ocupadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            foreach ($mis_mesas_ocupadas as $mesa) {
-                $upd = $conn->prepare("UPDATE mesa SET estado = 'libre' WHERE idMesa = :id");
-                $upd->execute([':id' => $mesa['idMesa']]);
-
-                $updateHist = $conn->prepare(
-                    "UPDATE historico SET horaDesocupacion = NOW() WHERE idMesa = :idMesa AND horaDesocupacion IS NULL AND idCamarero = :idCamarero"
-                );
-                $updateHist->execute([':idMesa' => $mesa['idMesa'], ':idCamarero' => $idCamarero]);
-            }
-
-            $_SESSION['success'] = "Todas tus mesas ocupadas han sido liberadas";
-        }
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Error al cambiar estado de las mesas: " . $e->getMessage();
-    }
-
-    header('Location: ./sala.php?idSala=' . $idSala);
-    exit;
-}
-
-// FILTROS
-$filtro_estado = $_GET['filtro_estado'] ?? 'todas';
-$filtro_sillas = $_GET['filtro_sillas'] ?? 'todas';
-
-try {
-    $sql = "SELECT * FROM mesa WHERE idSala = :idSala";
-
-    if ($filtro_estado === 'ocupadas') $sql .= " AND estado = 'ocupada'";
-    if ($filtro_estado === 'libres') $sql .= " AND estado = 'libre'";
-
-    if ($filtro_sillas === '1') $sql .= " AND numSillas = 1";
-    elseif ($filtro_sillas === '2') $sql .= " AND numSillas = 2";
-    elseif ($filtro_sillas === '3') $sql .= " AND numSillas = 3";
-    elseif ($filtro_sillas === '4') $sql .= " AND numSillas = 4";
-
-    $sql .= " ORDER BY nombre";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([':idSala' => $idSala]);
-    $mesas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    $mesas = [];
-    $errorMsg = "Error al leer mesas: " . $e->getMessage();
-}
-
-// Sala seleccionada
-$selectedMesa = null;
-$nombreCamareroOcupante = null;
-$puedeLiberar = false;
-$idCamareroOcupante = null;
-
-if (isset($_GET['select'])) {
-    $idSelect = intval($_GET['select']);
-    foreach ($mesas as $m) {
-        if ($m['idMesa'] == $idSelect) { $selectedMesa = $m; break; }
-    }
-
-    if ($selectedMesa && $selectedMesa['estado'] === 'ocupada') {
-        $sql = "SELECT c.nombre, c.apellidos, c.idCamarero FROM historico h INNER JOIN camarero c ON h.idCamarero = c.idCamarero WHERE h.idMesa = :idMesa AND h.horaDesocupacion IS NULL ORDER BY h.idHistorico DESC LIMIT 1";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([':idMesa' => $selectedMesa['idMesa']]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($row) {
-            $nombreCamareroOcupante = $row['nombre'] . ' ' . $row['apellidos'];
-            $idCamareroOcupante = $row['idCamarero'];
-            $puedeLiberar = ($idCamareroOcupante == $_SESSION['idCamarero']);
-        }
-    }
-}
-
-if (isset($_SESSION['error'])) { $errorMsg = $_SESSION['error']; unset($_SESSION['error']); }
-if (isset($_SESSION['success'])) { $successMsg = $_SESSION['success']; unset($_SESSION['success']); }
-
-// Obtener nombre de sala
-try {
-    $stmtSala = $conn->prepare("SELECT nombre FROM sala WHERE idSala = :id");
-    $stmtSala->execute([':id' => $idSala]);
-    $salaRow = $stmtSala->fetch(PDO::FETCH_ASSOC);
-    $nombreSala = $salaRow ? ucfirst($salaRow['nombre']) : 'Sala';
-} catch (PDOException $e) {
-    $nombreSala = 'Sala';
-}
+require_once '../../processes/sala_actions.php';
 ?>
 
 <!DOCTYPE html>
@@ -233,18 +10,17 @@ try {
     <link rel="stylesheet" href="../../styles/estilos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="body-sinnoh page-sala">
+<body class="body-sinnoh page-sala" <?php if (!empty($fondoSala)) { echo 'style="background-image:url(../../img/salas/' . htmlspecialchars($fondoSala) . ');background-size:cover;background-position:center;"'; } ?>>
     <header>
         <span>Pokéfull Stack | <?php echo $_SESSION['username'];?></span>
         <h1><?= htmlspecialchars($nombreSala) ?></h1>
-        <form id="cerrar-sesion" action="../../processes/logout.php" method="post">
-            <button type="submit" class="btn-cerrar">Cerrar sesión</button>
-        </form>
+        <div style="display:flex;gap:8px;align-items:center;">
+            <a class="btn" href="../admin_salas.php">Admin Salas</a>
+            <form id="cerrar-sesion" action="../../processes/logout.php" method="post" style="margin:0;">
+                <button type="submit" class="btn-cerrar">Cerrar sesión</button>
+            </form>
+        </div>
     </header>
-
-    <div class="sala-buttons">
-        <!-- Enlaces a otras salas pueden mantenerse si se desea -->
-    </div>
 
     <?php
     $total_mesas = count($mesas);
@@ -290,7 +66,7 @@ try {
         <?php if (!empty($errorMsg)): ?><p class="error-msg"><?= htmlspecialchars($errorMsg) ?></p><?php endif; ?>
         <?php if (!empty($successMsg)): ?><p class="success-msg"><?= htmlspecialchars($successMsg) ?></p><?php endif; ?>
 
-        <form method="post" action="./sala.php?idSala=<?= $idSala ?>" class="acciones-form">
+        <form method="post" action="?idSala=<?= $idSala ?>&filtro_estado=<?= $filtro_estado ?>&filtro_sillas=<?= $filtro_sillas ?>" class="acciones-form">
             <?php if ($libres > 0): ?>
                 <input type="hidden" name="accion_todas" value="ocupar_todas">
                 <button type="submit" class="btn-toggle">Ocupar todas las mesas libres (<?= $libres ?>)</button>
@@ -316,13 +92,9 @@ try {
             <p><strong>Estado:</strong> <?= ucfirst($selectedMesa['estado']) ?></p>
             <p><strong>Sillas:</strong> <?= intval($selectedMesa['numSillas']) ?></p>
 
-            <form method="post" action="./sala.php?idSala=<?= $idSala ?>" class="form-sillas">
+            <form method="post" action="?idSala=<?= $idSala ?>&filtro_estado=<?= $filtro_estado ?>&filtro_sillas=<?= $filtro_sillas ?>" class="form-sillas">
                 <input type="hidden" name="idMesa" value="<?= intval($selectedMesa['idMesa']) ?>">
-                <div class="form-row">
-                    <label for="num_sillas"><strong>Actualizar sillas:</strong></label>
-                    <input type="number" name="num_sillas" id="num_sillas" value="<?= intval($selectedMesa['numSillas']) ?>" min="1" max="10" class="input-small">
-                    <button type="submit" name="actualizar_sillas" class="btn-toggle">Actualizar</button>
-                </div>
+                
             </form>
 
             <?php if ($selectedMesa && $selectedMesa['estado'] === 'ocupada' && $nombreCamareroOcupante): ?>
@@ -331,7 +103,7 @@ try {
             <?php endif; ?>
 
             <?php $disabled = ($selectedMesa['estado'] === 'ocupada' && !$puedeLiberar); ?>
-            <form id="form-cambiar-estado" method="post" action="./sala.php?idSala=<?= $idSala ?>&filtro_estado=<?= $filtro_estado ?>&filtro_sillas=<?= $filtro_sillas ?>">
+            <form id="form-cambiar-estado" method="post" action="?idSala=<?= $idSala ?>&filtro_estado=<?= $filtro_estado ?>&filtro_sillas=<?= $filtro_sillas ?>">
                 <input type="hidden" name="idMesa" value="<?= intval($selectedMesa['idMesa']) ?>">
                 <button type="submit" class="btn-toggle <?= $disabled ? 'btn-disabled' : '' ?>" <?= $disabled ? 'disabled' : '' ?>>
                     <?= ($selectedMesa['estado'] === 'libre') ? 'Marcar como ocupada' : 'Marcar como libre' ?>
@@ -340,7 +112,9 @@ try {
 
             <br>
             <a class="btn-toggle" href="../historial.php?idMesa=<?= intval($selectedMesa['idMesa']) ?>&idSala=<?= intval($selectedMesa['idSala']) ?>">Ver historial de mesa</a>
-            <br><br><br>
+            <br>
+            <a class="btn-toggle" href="../admin_mesas.php?idSala=<?= intval($selectedMesa['idSala']) ?>&edit=<?= intval($selectedMesa['idMesa']) ?>">Administrar mesa</a>
+            <br><br>
             <a class="btn-toggle" href="../historialSala.php?idSala=<?= intval($selectedMesa['idSala']) ?>">Ver historial de sala</a>
         <?php endif; ?>
     </div>
