@@ -9,6 +9,11 @@ if (!isset($_SESSION['idCamarero'])) {
 
 $idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : 0;
 
+if ($idSala <= 0) {
+    header('Location: ./selecciona_sala.php');
+    exit;
+}
+
 try {
     $sql = "
         SELECT 
@@ -68,10 +73,10 @@ try {
         <?php if (isset($errorMsg)): ?>
             <p style="color: red;"><?= htmlspecialchars($errorMsg) ?></p>
         <?php elseif (empty($historial)): ?>
-            <p>No hay registros en el historial para esta sala.</p>
-        <?php else: ?>
-            <table border="1" cellpadding="8" cellspacing="0" style="width:100%; background:#fff;">
-                <thead style="background:#007bff; color:#fff;">
+                <p>No hay registros en el historial para esta sala.</p>
+            <?php else: ?>
+                <table class="table-historial">
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Mesa</th>
@@ -97,45 +102,10 @@ try {
 
     <div class="volver">
         <?php
-        // Detectar sala por parámetro GET
-        $idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : null;
-        $urlVolver = './selecciona_sala.php';
-        if ($idSala) {
-            switch ($idSala) {
-                case 1:
-                    $urlVolver = './salas/terrazas/kanto.php';
-                    break;
-                case 2:
-                    $urlVolver = './salas/terrazas/johto.php';
-                    break;
-                case 3:
-                    $urlVolver = './salas/terrazas/hoenn.php';
-                    break;
-                case 4:
-                    $urlVolver = './salas/comedores/sinnoh.php';
-                    break;
-                case 5:
-                    $urlVolver = './salas/comedores/unova.php';
-                    break;
-                case 6:
-                    $urlVolver = './salas/salas_privadas/kalos.php';
-                    break;
-                case 7:
-                    $urlVolver = './salas/salas_privadas/alola.php';
-                    break;
-                case 8:
-                    $urlVolver = './salas/salas_privadas/galar.php';
-                    break;
-                case 9:
-                    $urlVolver = './salas/salas_privadas/paldea.php';
-                    break;
-                default:
-                    $urlVolver = './selecciona_sala.php';
-                    break;
-            }
-        }
+        // Volver a la sala unificada
+        $urlVolver = './salas/sala.php?idSala=' . $idSala;
         ?>
-        <a href="<?= $urlVolver ?>">← Volver a la sala</a>
+        <div class="historial-actions"><a href="<?= $urlVolver ?>">← Volver a la sala</a></div>
     </div>
 
     <footer>

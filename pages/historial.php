@@ -57,72 +57,16 @@ try {
 <head>
     <meta charset="utf-8">
     <title>Historial de <?= htmlspecialchars($nombreMesa) ?></title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #333;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        h1 {
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            background: #222;
-            color: #f8c300;
-            font-size: 2.2rem;
-        }
-        table {
-            width: 90%;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background-color: #444;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-        }
-        th {
-            background-color: #f8c300;
-            color: #222;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #555;
-        }
-        tr:hover {
-            background-color: #666;
-        }
-        .volver {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .volver a {
-            color: #f8c300;
-            text-decoration: none;
-            border: 2px solid #f8c300;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-        .volver a:hover {
-            background-color: #f8c300;
-            color: #222;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
-<body>
-    <h1>Historial de la mesa: <?= htmlspecialchars($nombreMesa) ?></h1>
+<body class="body-sinnoh">
+    <h1 class="historial-header">Historial de la mesa: <?= htmlspecialchars($nombreMesa) ?></h1>
 
     <?php if (empty($historial)): ?>
         <p style="text-align:center; margin-top:30px;">No hay registros de ocupación para esta mesa.</p>
     <?php else: ?>
-        <table>
+        <table class="table-historial">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -150,42 +94,11 @@ try {
 
     <div class="volver">
         <?php
-        // Detectar sala por parámetro GET
+        // Detectar sala por parámetro GET y volver a la sala unificada
         $idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : null;
         $urlVolver = './selecciona_sala.php';
         if ($idSala) {
-            switch ($idSala) {
-                case 1:
-                    $urlVolver = './salas/terrazas/kanto.php';
-                    break;
-                case 2:
-                    $urlVolver = './salas/terrazas/johto.php';
-                    break;
-                case 3:
-                    $urlVolver = './salas/terrazas/hoenn.php';
-                    break;
-                case 4:
-                    $urlVolver = './salas/comedores/sinnoh.php';
-                    break;
-                case 5:
-                    $urlVolver = './salas/comedores/unova.php';
-                    break;
-                case 6:
-                    $urlVolver = './salas/salas_privadas/kalos.php';
-                    break;
-                case 7:
-                    $urlVolver = './salas/salas_privadas/alola.php';
-                    break;
-                case 8:
-                    $urlVolver = './salas/salas_privadas/galar.php';
-                    break;
-                case 9:
-                    $urlVolver = './salas/salas_privadas/paldea.php';
-                    break;
-                default:
-                    $urlVolver = './selecciona_sala.php';
-                    break;
-            }
+            $urlVolver = './salas/sala.php?idSala=' . $idSala;
         }
         ?>
         <a href="<?= $urlVolver ?>">← Volver a la sala</a>

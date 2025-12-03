@@ -233,7 +233,7 @@ try {
     <link rel="stylesheet" href="../../styles/estilos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="body-sinnoh">
+<body class="body-sinnoh page-sala">
     <header>
         <span>Pokéfull Stack | <?php echo $_SESSION['username'];?></span>
         <h1><?= htmlspecialchars($nombreSala) ?></h1>
@@ -261,25 +261,25 @@ try {
         <div class="filtro-grupo">
             <span class="filtro-label">Estado:</span>
             <div class="filtro-botones">
-                <a href="?filtro_estado=todas&filtro_sillas=<?= $filtro_sillas ?>" class="filtro-btn <?= $filtro_estado === 'todas' ? 'filtro-activo' : '' ?>">Todas (<?= $total_mesas ?>)</a>
-                <a href="?filtro_estado=ocupadas&filtro_sillas=<?= $filtro_sillas ?>" class="filtro-btn <?= $filtro_estado === 'ocupadas' ? 'filtro-activo' : '' ?>">Ocupadas (<?= $ocupadas ?>)</a>
-                <a href="?filtro_estado=libres&filtro_sillas=<?= $filtro_sillas ?>" class="filtro-btn <?= $filtro_estado === 'libres' ? 'filtro-activo' : '' ?>">Libres (<?= $libres ?>)</a>
+                <a href="?filtro_estado=todas&filtro_sillas=<?= $filtro_sillas ?>&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_estado === 'todas' ? 'filtro-activo' : '' ?>">Todas (<?= $total_mesas ?>)</a>
+                <a href="?filtro_estado=ocupadas&filtro_sillas=<?= $filtro_sillas ?>&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_estado === 'ocupadas' ? 'filtro-activo' : '' ?>">Ocupadas (<?= $ocupadas ?>)</a>
+                <a href="?filtro_estado=libres&filtro_sillas=<?= $filtro_sillas ?>&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_estado === 'libres' ? 'filtro-activo' : '' ?>">Libres (<?= $libres ?>)</a>
             </div>
         </div>
 
         <div class="filtro-grupo">
             <span class="filtro-label">Sillas:</span>
             <div class="filtro-botones">
-                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=todas" class="filtro-btn <?= $filtro_sillas === 'todas' ? 'filtro-activo' : '' ?>">Todas</a>
-                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=1" class="filtro-btn <?= $filtro_sillas === '1' ? 'filtro-activo' : '' ?>">1 (<?= $sillas_1 ?>)</a>
-                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=2" class="filtro-btn <?= $filtro_sillas === '2' ? 'filtro-activo' : '' ?>">2 (<?= $sillas_2 ?>)</a>
-                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=3" class="filtro-btn <?= $filtro_sillas === '3' ? 'filtro-activo' : '' ?>">3 (<?= $sillas_3 ?>)</a>
-                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=4" class="filtro-btn <?= $filtro_sillas === '4' ? 'filtro-activo' : '' ?>">4 (<?= $sillas_4 ?>)</a>
+                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=todas&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_sillas === 'todas' ? 'filtro-activo' : '' ?>">Todas</a>
+                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=1&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_sillas === '1' ? 'filtro-activo' : '' ?>">1 (<?= $sillas_1 ?>)</a>
+                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=2&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_sillas === '2' ? 'filtro-activo' : '' ?>">2 (<?= $sillas_2 ?>)</a>
+                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=3&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_sillas === '3' ? 'filtro-activo' : '' ?>">3 (<?= $sillas_3 ?>)</a>
+                <a href="?filtro_estado=<?= $filtro_estado ?>&filtro_sillas=4&idSala=<?= $idSala ?>" class="filtro-btn <?= $filtro_sillas === '4' ? 'filtro-activo' : '' ?>">4 (<?= $sillas_4 ?>)</a>
             </div>
         </div>
 
         <div class="filtro-grupo">
-            <a href="?" class="filtro-btn filtro-limpiar">🗙 Limpiar</a>
+            <a href="./sala.php?idSala=<?= $idSala ?>" class="filtro-btn filtro-limpiar">🗙 Limpiar</a>
         </div>
     </div>
 
@@ -290,7 +290,7 @@ try {
         <?php if (!empty($errorMsg)): ?><p class="error-msg"><?= htmlspecialchars($errorMsg) ?></p><?php endif; ?>
         <?php if (!empty($successMsg)): ?><p class="success-msg"><?= htmlspecialchars($successMsg) ?></p><?php endif; ?>
 
-        <form method="post" action="./sala.php?idSala=<?= $idSala ?>" style="margin-bottom: 20px;">
+        <form method="post" action="./sala.php?idSala=<?= $idSala ?>" class="acciones-form">
             <?php if ($libres > 0): ?>
                 <input type="hidden" name="accion_todas" value="ocupar_todas">
                 <button type="submit" class="btn-toggle">Ocupar todas las mesas libres (<?= $libres ?>)</button>
@@ -316,12 +316,12 @@ try {
             <p><strong>Estado:</strong> <?= ucfirst($selectedMesa['estado']) ?></p>
             <p><strong>Sillas:</strong> <?= intval($selectedMesa['numSillas']) ?></p>
 
-            <form method="post" action="./sala.php?idSala=<?= $idSala ?>" style="margin: 15px 0;">
+            <form method="post" action="./sala.php?idSala=<?= $idSala ?>" class="form-sillas">
                 <input type="hidden" name="idMesa" value="<?= intval($selectedMesa['idMesa']) ?>">
-                <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="form-row">
                     <label for="num_sillas"><strong>Actualizar sillas:</strong></label>
-                    <input type="number" name="num_sillas" id="num_sillas" value="<?= intval($selectedMesa['numSillas']) ?>" min="1" max="10" style="width: 60px; padding: 5px;">
-                    <button type="submit" name="actualizar_sillas" class="btn-toggle" style="padding: 5px 10px;">Actualizar</button>
+                    <input type="number" name="num_sillas" id="num_sillas" value="<?= intval($selectedMesa['numSillas']) ?>" min="1" max="10" class="input-small">
+                    <button type="submit" name="actualizar_sillas" class="btn-toggle">Actualizar</button>
                 </div>
             </form>
 
@@ -330,9 +330,10 @@ try {
                 <?php if (!$puedeLiberar): ?><p style="color: #ff6b6b; font-weight: bold;">⚠️ Solo <?= htmlspecialchars($nombreCamareroOcupante) ?> puede liberar esta mesa</p><?php endif; ?>
             <?php endif; ?>
 
+            <?php $disabled = ($selectedMesa['estado'] === 'ocupada' && !$puedeLiberar); ?>
             <form id="form-cambiar-estado" method="post" action="./sala.php?idSala=<?= $idSala ?>&filtro_estado=<?= $filtro_estado ?>&filtro_sillas=<?= $filtro_sillas ?>">
                 <input type="hidden" name="idMesa" value="<?= intval($selectedMesa['idMesa']) ?>">
-                <button type="submit" class="btn-toggle" <?= ($selectedMesa['estado'] === 'ocupada' && !$puedeLiberar) ? 'disabled style="background:#ccc; cursor:not-allowed;"' : '' ?>>
+                <button type="submit" class="btn-toggle <?= $disabled ? 'btn-disabled' : '' ?>" <?= $disabled ? 'disabled' : '' ?>>
                     <?= ($selectedMesa['estado'] === 'libre') ? 'Marcar como ocupada' : 'Marcar como libre' ?>
                 </button>
             </form>
