@@ -3,6 +3,22 @@ CREATE DATABASE bd_pokefullStack;
 
 use bd_pokefullStack;
 
+create table usuario(
+    idUsuario int primary key auto_increment not null,
+    nombre varchar(60) not null,
+    apellidos varchar(80) not null,
+    nombreUsu varchar(60) unique not null,
+    dni varchar(10) not null,
+    telefono varchar(10) not null,
+    email varchar(60) not null,
+    rol enum('admin', 'gerent', 'camarero', 'manteniment', 'caixa') not null default 'camarero',
+    estado enum('activo', 'inactivo') not null default 'activo',
+    fechaContratacion date not null,
+    password varchar(255) not null,
+    fechaCreacion timestamp default current_timestamp,
+    fechaActualizacion timestamp default current_timestamp on update current_timestamp
+);
+
 create table camarero(
     idCamarero int primary key auto_increment not null,
     nombre varchar(60) not null,
@@ -54,7 +70,10 @@ alter table mesa
 add constraint fk_sala_mesa 
 foreign key (idSala) references sala(idSala);
 
-
+INSERT INTO usuario
+  (nombre, apellidos, nombreUsu, email, dni, telefono, fechaContratacion, rol, password, estado)
+VALUES
+  ('Admin', 'Principal', 'admin', 'admin@example.com', '00000000A', '600000000', '2025-12-03', 'admin', 'qweQWE123', 'activo');
 
 insert into sala (nombre) values("kanto");
 insert into sala (nombre) values("jotho");
