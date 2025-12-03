@@ -10,7 +10,7 @@ require_once '../../processes/sala_actions.php';
     <link rel="stylesheet" href="../../styles/estilos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="body-sinnoh page-sala" <?php if (!empty($fondoSala)) { echo 'style="background-image:url(../../img/salas/' . htmlspecialchars($fondoSala) . ');background-size:cover;background-position:center;"'; } ?>>
+<body class="body-sinnoh page-sala" <?php if (!empty($fondoSala)) { echo 'style="background-image:url(../../img/regiones/' . htmlspecialchars($fondoSala) . ');background-size:cover;background-position:center;"'; } ?>>
     <header>
         <span>Pokéfull Stack | <?php echo $_SESSION['username'];?></span>
         <h1><?= htmlspecialchars($nombreSala) ?></h1>
