@@ -2,8 +2,8 @@
 session_start();
 include '../database/conexion.php';
 
-// Verificar que l'usuari sigui admin
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
+// Verificar que l'usuari sigui admin o camarero
+if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], ['admin', 'camarero'])) {
     $_SESSION['error_usuarios'] = "No tienes permisos para eliminar usuarios.";
     header("Location: ../pages/admin_usuarios.php");
     exit();
