@@ -11,11 +11,59 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once '../../database/conexion.php';
 
+// Session vars disponibles para POST y GET (evita "Undefined index" y permite checks en la vista)
+$idCamarero = $_SESSION['idCamarero'] ?? null;
+$idUsuario = $_SESSION['idUsuario'] ?? null;
+$rol = $_SESSION['rol'] ?? null;
+
 // --- 1. PARÁMETROS GLOBALES ---
 // Obtenemos idSala y filtros, ya sea por GET o POST
 $idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : (isset($_POST['idSala']) ? intval($_POST['idSala']) : 0);
 $filtro_estado = $_REQUEST['filtro_estado'] ?? 'todas';
 $filtro_sillas = $_REQUEST['filtro_sillas'] ?? 'todas';
+
+// --- VALIDACIÓN DE FECHA Y HORA (Filtros) ---
+$filtro_fecha = $_REQUEST['filtro_fecha'] ?? date('Y-m-d');
+$filtro_hora = $_REQUEST['filtro_hora'] ?? date('H:00'); // Default to current hour (approx)
+
+// Asegurar formato de hora H:i
+if (strlen($filtro_hora) == 2) $filtro_hora .= ":00"; 
+
+$dateTimeInput = DateTime::createFromFormat('Y-m-d H:i', $filtro_fecha . ' ' . $filtro_hora);
+$now = new DateTime();
+// Margen de tolerancia pequeño o comparación estricta. 
+// La solicitud dice: "no se puedan poner fechas antiguas o horas antiguas"
+// Comparamos si la fecha+hora seleccionada es menor que la actual (con un pequeño margen de 1 hora quizas? No, estricto).
+// Pero como las franas son de 2 horas (e.g. 14:00 - 16:00), si son las 14:30 y selecciono 14:00, ¿es antiguo?
+// Si la franja ya empezó, tecnicamente es el presente. Vamos a permitir la franja actual.
+// Generamos la fecha fin de la franja seleccionada para ver si YA PASÓ completamente.
+// O simplemente verificamos si el INICIO es en el pasado?
+// "fechas antiguas o horas antiguas". Si el input es un filtro para VER reservas, ver el pasado podría ser útil (historial),
+// pero el usuario especificamente pide validarlos para que NO se puedan poner. Asumo que es para reservar o ver disponibilidad futura.
+// Voy a asumir validación estricta de "No permitir seleccionar un momento que ya pasó".
+// Si selecciono HOY a las 10:00 y son las 15:00 -> Error.
+// Si selecciono HOY a las 16:00 y son las 15:00 -> OK.
+
+$alertMessage = null;
+
+if ($dateTimeInput && $dateTimeInput < $now) {
+    // Si es hoy, permitir la franja actual (ej. son 15:30, la franja 14:00-16:00 es válida).
+    // Verificamos si la franja seleccionada (2h) cubre el momento actual.
+    // Inicio: filtro_hora. Fin: filtro_hora + 2h.
+    $endSlot = clone $dateTimeInput;
+    $endSlot->modify('+2 hours');
+    
+    if ($endSlot < $now) {
+         // La franja ya terminó completamente. Es antigua.
+         $alertMessage = "No puedes seleccionar una fecha u hora pasada.";
+         // Resetear a actual
+         $filtro_fecha = date('Y-m-d');
+         // Buscar franja actual
+         $h = intval(date('H'));
+         if ($h % 2 != 0) $h--; // Round down to even
+         $filtro_hora = sprintf('%02d:00', $h);
+    }
+}
 
 // Validación básica
 if ($idSala <= 0) {
@@ -33,56 +81,17 @@ $baseUrl = "sala.php?idSala=$idSala&filtro_estado=$filtro_estado&filtro_sillas=$
 // Se ejecuta cuando se envía un formulario a esta misma página
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $idCamarero = $_SESSION['idCamarero'] ?? null;
-    
-    // Si no hay sesión, redirigir a login
-    if (!$idCamarero) {
+    // Re-uso las variables de sesión ya definidas arriba
+
+    // Si no hay sesión válida, redirigir a login
+    if (!isset($_SESSION['username']) || !in_array($rol, ['camarero', 'admin'])) {
         header('Location: ../login.php?error=SesionExpirada');
         exit;
     }
 
     try {
-        // A) ACCIONES MASIVAS (Ocupar/Liberar todas)
-        if (isset($_POST['accion_todas'])) {
-            $accion = $_POST['accion_todas'];
-
-            if ($accion === 'ocupar_todas') {
-                $sql = "SELECT idMesa FROM mesa WHERE idSala = :idSala AND estado = 'libre'";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([':idSala' => $idSala]);
-                $mesas_libres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($mesas_libres as $mesa) {
-                    $upd = $conn->prepare("UPDATE mesa SET estado = 'ocupada' WHERE idMesa = :id");
-                    $upd->execute([':id' => $mesa['idMesa']]);
-
-                    $insertHist = $conn->prepare("INSERT INTO historico (idMesa, idSala, idCamarero, horaOcupacion, horaDesocupacion) VALUES (:idMesa, :idSala, :idCamarero, NOW(), NULL)");
-                    $insertHist->execute([':idMesa' => $mesa['idMesa'], ':idSala' => $idSala, ':idCamarero' => $idCamarero]);
-                }
-                $_SESSION['success'] = "Todas las mesas libres han sido ocupadas";
-
-            } elseif ($accion === 'liberar_todas') {
-                $sql = "SELECT m.idMesa FROM mesa m INNER JOIN historico h ON m.idMesa = h.idMesa WHERE m.idSala = :idSala AND m.estado = 'ocupada' AND h.horaDesocupacion IS NULL AND h.idCamarero = :idCamarero";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([':idSala' => $idSala, ':idCamarero' => $idCamarero]);
-                $mis_mesas_ocupadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($mis_mesas_ocupadas as $mesa) {
-                    $upd = $conn->prepare("UPDATE mesa SET estado = 'libre' WHERE idMesa = :id");
-                    $upd->execute([':id' => $mesa['idMesa']]);
-
-                    $updateHist = $conn->prepare("UPDATE historico SET horaDesocupacion = NOW() WHERE idMesa = :idMesa AND horaDesocupacion IS NULL AND idCamarero = :idCamarero");
-                    $updateHist->execute([':idMesa' => $mesa['idMesa'], ':idCamarero' => $idCamarero]);
-                }
-                $_SESSION['success'] = "Todas tus mesas ocupadas han sido liberadas";
-            }
-            // Redirigir para evitar reenvío de formulario
-            header("Location: $baseUrl");
-            exit;
-        }
-        
         // B) ACTUALIZAR NÚMERO DE SILLAS
-        elseif (isset($_POST['actualizar_sillas'])) {
+        if (isset($_POST['actualizar_sillas'])) {
             $idMesa = intval($_POST['idMesa']);
             $nuevoNumSillas = intval($_POST['num_sillas']);
 
@@ -92,43 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $upd = $conn->prepare("UPDATE mesa SET numSillas = :numSillas WHERE idMesa = :id");
                 $upd->execute([':numSillas' => $nuevoNumSillas, ':id' => $idMesa]);
                 $_SESSION['success'] = "Número de sillas actualizado correctamente a $nuevoNumSillas";
-            }
-            header("Location: $baseUrl&select=$idMesa");
-            exit;
-        }
-        
-        // C) CAMBIAR ESTADO INDIVIDUAL (Ocupar/Liberar una mesa)
-        elseif (isset($_POST['idMesa'])) {
-            $idMesa = intval($_POST['idMesa']);
-            
-            $stmt = $conn->prepare("SELECT estado FROM mesa WHERE idMesa = :id");
-            $stmt->execute([':id' => $idMesa]);
-            $mesa = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($mesa) {
-                if ($mesa['estado'] === 'libre') {
-                    // Ocupar
-                    $upd = $conn->prepare("UPDATE mesa SET estado = 'ocupada' WHERE idMesa = :id");
-                    $upd->execute([':id' => $idMesa]);
-
-                    $insertHist = $conn->prepare("INSERT INTO historico (idMesa, idSala, idCamarero, horaOcupacion, horaDesocupacion) VALUES (:idMesa, :idSala, :idCamarero, NOW(), NULL)");
-                    $insertHist->execute([':idMesa' => $idMesa, ':idSala' => $idSala, ':idCamarero' => $idCamarero]);
-                } else {
-                    // Liberar (verificando propiedad)
-                    $stmtHist = $conn->prepare("SELECT idCamarero FROM historico WHERE idMesa = :idMesa AND horaDesocupacion IS NULL ORDER BY idHistorico DESC LIMIT 1");
-                    $stmtHist->execute([':idMesa' => $idMesa]);
-                    $historico = $stmtHist->fetch(PDO::FETCH_ASSOC);
-
-                    if (!$historico || $historico['idCamarero'] != $idCamarero) {
-                        $_SESSION['error'] = "No puedes liberar esta mesa. Solo el camarero que la ocupó puede liberarla.";
-                    } else {
-                        $upd = $conn->prepare("UPDATE mesa SET estado = 'libre' WHERE idMesa = :id");
-                        $upd->execute([':id' => $idMesa]);
-
-                        $updateHist = $conn->prepare("UPDATE historico SET horaDesocupacion = NOW() WHERE idMesa = :idMesa AND horaDesocupacion IS NULL ORDER BY idHistorico DESC LIMIT 1");
-                        $updateHist->execute([':idMesa' => $idMesa]);
-                    }
-                }
             }
             header("Location: $baseUrl&select=$idMesa");
             exit;
@@ -145,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Si llegamos aquí, es una petición GET (o POST fallido sin redirect, aunque el redirect es forzado arriba).
 // Preparamos las variables para que la vista las use.
 
-// A) Obtener Mesas con Filtros
+// A) Obtener Mesas con Filtros (incluyendo reservas activas)
 try {
     $sql = "SELECT * FROM mesa WHERE idSala = :idSala";
     if ($filtro_estado === 'ocupadas') $sql .= " AND estado = 'ocupada'";
@@ -156,6 +128,15 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->execute([':idSala' => $idSala]);
     $mesas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Sincronizar estado de las mesas
+    require_once __DIR__ . '/sync_mesas.php';
+    syncMesasStatus($conn, $idSala);
+
+    // Recargar mesas con el estado actualizado
+    $stmt->execute([':idSala' => $idSala]);
+    $mesas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
     $mesas = [];
     $errorMsg = "Error al leer mesas: " . $e->getMessage();
@@ -173,20 +154,62 @@ if (isset($_GET['select'])) {
     }
 
     if ($selectedMesa && $selectedMesa['estado'] === 'ocupada') {
-        $sql = "SELECT c.nombre, c.apellidos, c.idCamarero FROM historico h INNER JOIN camarero c ON h.idCamarero = c.idCamarero WHERE h.idMesa = :idMesa AND h.horaDesocupacion IS NULL ORDER BY h.idHistorico DESC LIMIT 1";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([':idMesa' => $selectedMesa['idMesa']]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($row) {
-            $nombreCamareroOcupante = $row['nombre'] . ' ' . $row['apellidos'];
-            $puedeLiberar = ($row['idCamarero'] == $_SESSION['idCamarero']);
+        // Check if it is occupied by an active reservation
+        $sqlReserva = "SELECT idReserva, fecha, horaInicio, horaFin FROM reserva WHERE idMesa = :idMesa AND fecha = :fecha AND horaInicio <= :horaActual AND horaFin > :horaActual LIMIT 1";
+        $stmtReserva = $conn->prepare($sqlReserva);
+        $stmtReserva->execute([
+            ':idMesa' => $selectedMesa['idMesa'],
+            ':fecha' => date('Y-m-d'),
+            ':horaActual' => date('H:i:s')
+        ]);
+        $reservaData = $stmtReserva->fetch(PDO::FETCH_ASSOC);
+
+        if ($reservaData) {
+            $nombreCamareroOcupante = "Reservada hasta " . substr($reservaData['horaFin'], 0, 5);
+            $puedeLiberar = false; // No se puede liberar una reserva desde aquí
+        } else {
+            // Si está ocupada por histrico
+            $sql = "SELECT c.nombre, c.apellidos, c.idCamarero FROM historico h INNER JOIN camarero c ON h.idCamarero = c.idCamarero WHERE h.idMesa = :idMesa AND h.horaDesocupacion IS NULL ORDER BY h.idHistorico DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([':idMesa' => $selectedMesa['idMesa']]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                $nombreCamareroOcupante = $row['nombre'] . ' ' . $row['apellidos'];
+                $ownerCamarero = $row['idCamarero'] ?? null;
+                // Allow release if admin, if legacy camarero matches, or if current user is a 'camarero' in the new system
+                $puedeLiberar = false;
+                if (isset($rol) && $rol === 'admin') {
+                    $puedeLiberar = true;
+                } elseif (!empty($idCamarero) && $ownerCamarero && $ownerCamarero == $idCamarero) {
+                    $puedeLiberar = true;
+                } elseif (!empty($idUsuario) && isset($rol) && $rol === 'camarero') {
+                    // Fallback: allow new-system camarero users to release
+                    $puedeLiberar = true;
+                }
+            }
         }
     }
 }
 
 // C) Mensajes Flash
-if (isset($_SESSION['error'])) { $errorMsg = $_SESSION['error']; unset($_SESSION['error']); }
-if (isset($_SESSION['success'])) { $successMsg = $_SESSION['success']; unset($_SESSION['success']); }
+if (isset($_SESSION['error'])) {
+    // Algunos procesos guardan arrays de errores; convertirlos a string para la vista
+    if (is_array($_SESSION['error'])) {
+        $errorMsg = implode("<br>", $_SESSION['error']);
+    } else {
+        $errorMsg = $_SESSION['error'];
+    }
+    unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success'])) {
+    if (is_array($_SESSION['success'])) {
+        $successMsg = implode("<br>", $_SESSION['success']);
+    } else {
+        $successMsg = $_SESSION['success'];
+    }
+    unset($_SESSION['success']);
+}
 
 // D) Información de la Sala
 try {
@@ -194,13 +217,24 @@ try {
     $stmtSala->execute([':id' => $idSala]);
     $salaRow = $stmtSala->fetch(PDO::FETCH_ASSOC);
     $nombreSala = $salaRow ? ucfirst($salaRow['nombre']) : 'Sala';
-    // Determine background image file for this sala (if exists)
+    // Determine background image file for this sala
     $fondoSala = '';
-    $imgPattern = __DIR__ . '/../../img/salas/sala_' . $idSala . '.*';
+    
+    // 1. Custom uploaded image: sala_{id}.* in img/regiones
+    $imgPattern = __DIR__ . '/../img/regiones/sala_' . $idSala . '.*';
     $matches = glob($imgPattern);
+    
     if ($matches && count($matches) > 0) {
-        // Use the first matching file name
         $fondoSala = basename($matches[0]);
+    } else {
+        // 2. Legacy image: {Nombre}.png in img/regiones
+        // Limpiamos el nombre para asegurar coincidencia (aunque en DB ya debería estar bien)
+        $cleanName = $salaRow['nombre']; 
+        $legacyPath = __DIR__ . '/../img/regiones/' . $cleanName . '.png';
+        
+        if (file_exists($legacyPath)) {
+            $fondoSala = $cleanName . '.png';
+        }
     }
 } catch (PDOException $e) {
     $nombreSala = 'Sala';
