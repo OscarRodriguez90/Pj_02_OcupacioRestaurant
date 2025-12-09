@@ -2,8 +2,10 @@
 session_start();
 require_once '../database/conexion.php'; 
 
-if (!isset($_SESSION['idCamarero'])) {
-    header('Location: ../login.php?error=SesionExpirada');
+// Verificar sesión: permitir legacy `idCamarero` o usuarios con rol `camarero`/`admin`
+$rol = $_SESSION['rol'] ?? null;
+if (!(isset($_SESSION['idCamarero']) || $rol === 'camarero' || $rol === 'admin')) {
+    header('Location: ./login.php?error=SesionExpirada');
     exit;
 }
 
@@ -35,37 +37,38 @@ try {
 } catch (PDOException $e) {
     $errorMsg = "Error al cargar historial: " . $e->getMessage();
 }
+
+// Determinar nombre de sala y clase de body según el id
+$nombreSala = '';
+$bodyClass = '';
+switch ($idSala) {
+    case 1: $nombreSala = 'Kanto'; $bodyClass = 'body-kanto'; break;
+    case 2: $nombreSala = 'Johto'; $bodyClass = 'body-johto'; break;
+    case 3: $nombreSala = 'Hoenn'; $bodyClass = 'body-hoenn'; break;
+    case 4: $nombreSala = 'Sinnoh'; $bodyClass = 'body-sinnoh'; break;
+    case 5: $nombreSala = 'Unova'; $bodyClass = 'body-unova'; break;
+    case 6: $nombreSala = 'Kalos'; $bodyClass = 'body-kalos'; break;
+    case 7: $nombreSala = 'Alola'; $bodyClass = 'body-alola'; break;
+    case 8: $nombreSala = 'Galar'; $bodyClass = 'body-galar'; break;
+    case 9: $nombreSala = 'Paldea'; $bodyClass = 'body-paldea'; break;
+    default: $nombreSala = 'Desconocida'; $bodyClass = ''; break;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Historial de Sala</title>
-    <link rel="stylesheet" href="./../../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
 </head>
-<body class="body-sinnoh">
+<body class="<?php echo $bodyClass ?: 'page-sala'; ?>">
     <header>
         <h1>Historial General de la Sala 
-            <?php
-            // Obtener el nombre de la sala según el idSala
-            $nombreSala = '';
-            switch ($idSala) {
-                case 1: $nombreSala = 'Kanto'; break;
-                case 2: $nombreSala = 'Johto'; break;
-                case 3: $nombreSala = 'Hoenn'; break;
-                case 4: $nombreSala = 'Sinnoh'; break;
-                case 5: $nombreSala = 'Unova'; break;
-                case 6: $nombreSala = 'Kalos'; break;
-                case 7: $nombreSala = 'Alola'; break;
-                case 8: $nombreSala = 'Galar'; break;
-                case 9: $nombreSala = 'Paldea'; break;
-                default: $nombreSala = 'Desconocida'; break;
-            }
-            echo htmlspecialchars($nombreSala);
-            ?>
+            <?php echo htmlspecialchars($nombreSala); ?>
         </h1>
-        <a class="btn-cerrar" href="./../../processes/logout.php">Cerrar sesión</a>
+        <a class="btn-cerrar" href="../processes/logout.php">Cerrar sesión</a>
         
     </header>
 

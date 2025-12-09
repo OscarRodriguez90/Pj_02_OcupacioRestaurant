@@ -9,7 +9,7 @@ require_once '../processes/reservas_logic.php';
   <title>Reservas</title>
   <link rel="stylesheet" href="../styles/estilos.css">
 </head>
-<body>
+<body class="page-reservas">
   <header>
     <span>Pokéfull Stack | <?php echo $_SESSION['username']; ?></span>
     <a class="btn-ghost" href="selecciona_sala.php">Volver a selección</a>

@@ -2,8 +2,8 @@
 session_start();
 require_once '../database/conexion.php'; // Ajusta la ruta si es distinta
 
-// Verificar sesión
-if (!isset($_SESSION['idCamarero'])) {
+// Verificar sesión: permitir acceso a cualquier usuario logueado
+if (!isset($_SESSION['rol'])) {
     header('Location: ./login.php?error=SesionExpirada');
     exit;
 }
