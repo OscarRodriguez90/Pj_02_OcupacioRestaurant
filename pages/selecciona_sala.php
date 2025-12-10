@@ -22,7 +22,8 @@ if (!isset($_SESSION['username'])) {
     <span>Pokéfull Stack | <?php echo $_SESSION['username'];?></span>
     <a class="btn-cerrar" href="./historial_general.php">Historial</a>
     <a class="btn-cerrar" href="../processes/logout.php">Cerrar sesión</a>
-    <a class="btn-cerrar" href="./camareros.php">Camareros</a>
+    <a class="btn-cerrar" href="./admin_usuarios.php">Administrador de Usuarios</a>
+    <a class="btn-cerrar" href="./reservas.php">Reservas</a>
   </header>
 
   <main class="contenedor-selector-sala selector-salas">

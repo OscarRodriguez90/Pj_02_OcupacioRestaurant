@@ -174,3 +174,40 @@ insert into mesa (nombre, numSillas, estado, idSala) values("FRAGUA", 3, "libre"
 insert into mesa (nombre, numSillas, estado, idSala) values("NAPADA", 4, "libre", 9);
 insert into mesa (nombre, numSillas, estado, idSala) values("MEDALI", 4, "libre", 9);
 insert into mesa (nombre, numSillas, estado, idSala) values("ALMIZCLE", 2, "libre", 9);
+
+-- Tabla de reservas para permitir que camareros reserven mesas en días y franjas horarias
+create table reserva(
+    idReserva int primary key auto_increment not null,
+    idMesa int not null,
+    idSala int not null,
+    idCamarero int default null,
+    idUsuario int default null,
+    fecha date not null,
+    horaInicio time not null,
+    horaFin time not null,
+    created_at datetime default current_timestamp
+);
+
+alter table reserva
+add constraint fk_reserva_mesa
+foreign key (idMesa) references mesa(idMesa);
+
+alter table reserva
+add constraint fk_reserva_sala
+foreign key (idSala) references sala(idSala);
+
+-- Foreign keys for reserva actor columns
+-- Allow deletions of users/camareros without breaking reserva by setting to NULL
+alter table reserva
+add constraint fk_reserva_camarero
+foreign key (idCamarero) references camarero(idCamarero)
+ON DELETE SET NULL
+ON UPDATE CASCADE;
+
+alter table reserva
+add constraint fk_reserva_usuario
+foreign key (idUsuario) references usuario(idUsuario)
+ON DELETE SET NULL
+ON UPDATE CASCADE;
+
+-- Nota: Si tu base de datos ya existe, aplica este CREATE TABLE manualmente o actualiza con una migración.
