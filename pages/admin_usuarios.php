@@ -2,13 +2,20 @@
 session_start();
 include '../database/conexion.php';
 
-if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], ['admin', 'camarero'])) {
-    header("Location: login.php");
-    exit();
+if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], ['admin', 'gerent'])) {
+    $access_denied = true;
+    $denied_message = "No tienes permisos para acceder a esta página (Gestión de Usuarios).";
+    $usuarios = []; // Init empty
+} else {
+    $access_denied = false;
 }
 
+if (!$access_denied) {
 $stmt = $conn->query("SELECT * FROM usuario ORDER BY fechaContratacion DESC");
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Only init logic if needed
+}
 
 $roles_disponibles = ['admin', 'gerent', 'camarero', 'manteniment', 'caixa'];
 $estados_disponibles = ['activo', 'inactivo'];
@@ -44,14 +51,23 @@ if ($accion == 'editar' && $editar_id) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Administración de Usuarios</title>
         <link rel="stylesheet" href="../styles/estilos.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="page-sala">
+    <?php if (isset($access_denied) && $access_denied): ?>
+        <input type="hidden" id="access-denied-msg" value="<?= htmlspecialchars($denied_message) ?>">
+        <script src="../js/script.js"></script>
+        </body></html>
+        <?php exit; ?>
+    <?php endif; ?>
     <header class="admin-header">
         <h1>Administración</h1>
         <div class="toolbar">
             <a class="btn-primary" href="admin_usuarios.php">Admin Usuarios</a>
+            <?php if ($_SESSION['rol'] === 'admin'): ?>
             <a class="btn-primary" href="admin_salas.php">Admin Salas</a>
             <a class="btn-primary" href="admin_mesas.php">Admin Mesas</a>
+            <?php endif; ?>
             <form id="cerrar-sesion" action="../processes/logout.php" method="post">
                 <button type="submit" class="btn-ghost">Cerrar sesión</button>
             </form>
@@ -71,53 +87,62 @@ if ($accion == 'editar' && $editar_id) {
                     <?php endif; ?>
 
                     <?php if ($accion == 'crear'): ?>
-                        <form method="POST" action="../processes/usuario_create.php">
+                        <form id="form-crear-usuario" method="POST" action="../processes/usuario_create.php">
                     <?php else: ?>
-                        <form method="POST" action="../processes/usuario_update.php">
+                        <form id="form-editar-usuario" method="POST" action="../processes/usuario_update.php">
                             <input type="hidden" name="idUsuario" value="<?php echo $usuario_editar['idUsuario']; ?>">
                     <?php endif; ?>
 
                             <label for="nombre">Nombre *</label>
-                            <input type="text" id="nombre" name="nombre" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['nombre']) : '' ?>">
+                            <input type="text" id="nombre" name="nombre" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['nombre']) : '' ?>">
+                            <div id="nombreError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
-                            <label for="apellidos">Apellidos *</label>
-                            <input type="text" id="apellidos" name="apellidos" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['apellidos']) : '' ?>">
+                            <label for="apellido">Apellidos *</label>
+                            <input type="text" id="apellido" name="apellidos" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['apellidos']) : '' ?>">
+                            <div id="apellidoError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
-                            <label for="nombreUsu">Nombre de Usuario *</label>
-                            <input type="text" id="nombreUsu" name="nombreUsu" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['nombreUsu']) : '' ?>">
+                            <label for="username">Nombre de Usuario *</label>
+                            <input type="text" id="username" name="nombreUsu" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['nombreUsu']) : '' ?>">
+                            <div id="usernameError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['email']) : '' ?>">
+                            <label for="correo">Email *</label>
+                            <input type="email" id="correo" name="email" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['email']) : '' ?>">
+                            <div id="correoError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
                             <label for="dni">DNI/NIF *</label>
-                            <input type="text" id="dni" name="dni" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['dni']) : '' ?>">
+                            <input type="text" id="dni" name="dni" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['dni']) : '' ?>">
+                            <div id="dniError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
                             <label for="telefono">Teléfono *</label>
-                            <input type="tel" id="telefono" name="telefono" required value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['telefono']) : '' ?>">
+                            <input type="tel" id="telefono" name="telefono" value="<?= $accion=='editar' ? htmlspecialchars($usuario_editar['telefono']) : '' ?>">
+                            <div id="telefonoError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
-                            <label for="fechaContratacion">Fecha Contratación *</label>
-                            <input type="date" id="fechaContratacion" name="fechaContratacion" required value="<?= $accion=='editar' ? $usuario_editar['fechaContratacion'] : '' ?>">
+                            <label for="fecha">Fecha Contratación *</label>
+                            <input type="date" id="fecha" name="fechaContratacion" value="<?= $accion=='editar' ? $usuario_editar['fechaContratacion'] : '' ?>">
+                            <div id="fechaError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
                             <label for="rol">Rol *</label>
-                            <select id="rol" name="rol" required>
+                            <select id="rol" name="rol">
                                     <?php foreach ($roles_disponibles as $rol): ?>
                                             <option value="<?php echo $rol; ?>" <?= ($accion=='editar' && $usuario_editar['rol']==$rol) ? 'selected' : '' ?>><?php echo ucfirst($rol); ?></option>
                                     <?php endforeach; ?>
                             </select>
 
                             <label for="estado">Estado *</label>
-                            <select id="estado" name="estado" required>
+                            <select id="estado" name="estado">
                                     <?php foreach ($estados_disponibles as $estado): ?>
                                             <option value="<?php echo $estado; ?>" <?= ($accion=='editar' && $usuario_editar['estado']==$estado) ? 'selected' : '' ?>><?php echo ucfirst($estado); ?></option>
                                     <?php endforeach; ?>
                             </select>
 
                             <label for="password"><?= $accion=='crear' ? 'Contraseña * (mínimo 6 caracteres)' : 'Cambiar Contraseña (opcional)' ?></label>
-                            <input type="password" id="password" name="password" <?= $accion=='crear' ? 'required' : '' ?> placeholder="<?= $accion=='editar' ? 'Nueva contraseña (opcional)' : '' ?>">
+                            <input type="password" id="password" name="password" placeholder="<?= $accion=='editar' ? 'Nueva contraseña (opcional)' : '' ?>">
+                            <div id="passwordError" class="error-message" style="color:red;font-size:0.9em;"></div>
 
                             <?php if ($accion == 'crear'): ?>
-                                <label for="password_confirm">Confirmar Contraseña *</label>
-                                <input type="password" id="password_confirm" name="password_confirm" required>
+                                <label for="confirm_password">Confirmar Contraseña *</label>
+                                <input type="password" id="confirm_password" name="password_confirm">
+                                <div id="confirmPasswordError" class="error-message" style="color:red;font-size:0.9em;"></div>
                             <?php endif; ?>
 
                             <div style="margin-top:12px;">
@@ -172,7 +197,6 @@ if ($accion == 'editar' && $editar_id) {
             </div>
         </section>
     </main>
-
-  
+    <script src="../js/script.js"></script>
 </body>
 </html>
