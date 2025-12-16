@@ -20,9 +20,9 @@ if (!isset($_SESSION['username'])) {
 
   <header>
     <span>Pokéfull Stack | <?php echo $_SESSION['username'];?></span>
-    <a class="btn-cerrar" href="./historial_general.php">Historial</a>
+    <a class="btn-cerrar" href="./historial/historial_general.php">Historial</a>
     <a class="btn-cerrar" href="../processes/logout.php">Cerrar sesión</a>
-    <a class="btn-cerrar" href="./admin_usuarios.php">Administrador de Usuarios</a>
+    <a class="btn-cerrar" href="./admin/admin_usuarios.php">Administrador de Usuarios</a>
     <a class="btn-cerrar" href="./reservas.php">Reservas</a>
   </header>
 

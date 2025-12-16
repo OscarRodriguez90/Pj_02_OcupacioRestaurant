@@ -36,7 +36,6 @@ include '../database/conexion.php';
                         
                         <div id="passwordError" class="error-message"></div>
                         <button class="button3" name="login">Login</button>
-                        <a href="./register.php" class="button3 link-button">Registrar</a>
                     </form>
                     <?php
                         if (isset($_SESSION['errorLog']) && is_array($_SESSION['errorLog'])) {

@@ -38,7 +38,7 @@ if (filter_has_var(INPUT_POST, 'login')) {
         
         // Redirigir según el rol
         if ($user['rol'] === 'admin') {
-            header("Location: ../pages/admin_mesas.php");
+            header("Location: ../pages/admin/admin_mesas.php");
         } else {
             header("Location: ../pages/selecciona_sala.php");
         }

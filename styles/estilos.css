@@ -1,4 +1,3 @@
-
 /* ---------------- TIPOGRAFÍA Y BODY ---------------- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,7 +35,7 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}    
+}
 
 .body-johto {
     background-image: url('./../img/regiones/Johto.png');
@@ -78,7 +77,7 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}    
+}
 
 /* ||||||||||||||||||||||||||| AZUL ||||||||||||||||||||||||| */
 .body-sinnoh h1,
@@ -88,16 +87,22 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-sinnoh .btn, .body-sinnoh .btn-link,
-.body-hoenn .btn, .body-hoenn .btn-link,
-.body-galar .btn, .body-galar .btn-link {
+.body-sinnoh .btn,
+.body-sinnoh .btn-link,
+.body-hoenn .btn,
+.body-hoenn .btn-link,
+.body-galar .btn,
+.body-galar .btn-link {
     background: #2196F3;
     color: #fff;
 }
 
-.body-sinnoh .btn:hover, .body-sinnoh .btn-link:hover,
-.body-hoenn .btn:hover, .body-hoenn .btn-link:hover,
-.body-galar .btn:hover, .body-galar .btn-link:hover {
+.body-sinnoh .btn:hover,
+.body-sinnoh .btn-link:hover,
+.body-hoenn .btn:hover,
+.body-hoenn .btn-link:hover,
+.body-galar .btn:hover,
+.body-galar .btn-link:hover {
     background: #1976D2;
 }
 
@@ -136,7 +141,7 @@ h1 {
     border: 2px solid #2196F3;
 }
 
-.body-sinnoh .volver a:hover, 
+.body-sinnoh .volver a:hover,
 .body-hoenn .volver a:hover,
 .body-galar .volver a:hover {
     background: #2196F3;
@@ -152,16 +157,22 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-unova .btn, .body-unova .btn-link,
-.body-alola .btn, .body-alola .btn-link,
-.body-kanto .btn, .body-kanto .btn-link {
+.body-unova .btn,
+.body-unova .btn-link,
+.body-alola .btn,
+.body-alola .btn-link,
+.body-kanto .btn,
+.body-kanto .btn-link {
     background: #fff200;
     color: #222;
 }
 
-.body-unova .btn:hover, .body-unova .btn-link:hover,
-.body-alola .btn:hover, .body-alola .btn-link:hover,
-.body-kanto .btn:hover, .body-kanto .btn-link:hover {
+.body-unova .btn:hover,
+.body-unova .btn-link:hover,
+.body-alola .btn:hover,
+.body-alola .btn-link:hover,
+.body-kanto .btn:hover,
+.body-kanto .btn-link:hover {
     background: #e6b800;
 }
 
@@ -208,14 +219,18 @@ h1 {
 
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-kalos .btn, .body-kalos .btn-link,
-.body-johto .btn, .body-johto .btn-link {
+.body-kalos .btn,
+.body-kalos .btn-link,
+.body-johto .btn,
+.body-johto .btn-link {
     background: #E91E63;
     color: #fff;
 }
 
-.body-kalos .btn:hover, .body-kalos .btn-link:hover,
-.body-johto .btn:hover, .body-johto .btn-link:hover {
+.body-kalos .btn:hover,
+.body-kalos .btn-link:hover,
+.body-johto .btn:hover,
+.body-johto .btn-link:hover {
     background: #C2185B;
 }
 
@@ -275,13 +290,15 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-paldea .btn, .body-paldea .btn-link {
-    
+.body-paldea .btn,
+.body-paldea .btn-link {
+
     background: #9C27B0;
     color: #fff;
 }
 
-.body-paldea .btn:hover, .body-paldea .btn-link:hover {
+.body-paldea .btn:hover,
+.body-paldea .btn-link:hover {
     background: #7B1FA2;
 }
 
@@ -321,7 +338,8 @@ h1 {
 
 
 
-header, footer {
+header,
+footer {
     background: rgba(58, 58, 58, 0.95);
     color: #fff200;
     padding: 10px 20px;
@@ -333,6 +351,7 @@ header, footer {
 header span {
     font-weight: bold;
 }
+
 footer {
     font-size: 14px;
     justify-content: center;
@@ -340,7 +359,8 @@ footer {
 
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.btn, .btn-link {
+.btn,
+.btn-link {
     display: inline-block;
     margin: 0 15px;
     padding: 12px 25px;
@@ -393,11 +413,277 @@ footer {
     align-items: flex-start;
     gap: 40px;
     padding: 40px;
-    max-width: 1400px; /* aumentar anchura máxima */
-    width: calc(100% - 80px); /* aprovechar más espacio horizontal */
+    max-width: 1400px;
+    /* aumentar anchura máxima */
+    width: calc(100% - 80px);
+    /* aprovechar más espacio horizontal */
     margin: 20px auto;
     box-sizing: border-box;
 }
+
+/* === Admin Usuarios specific styles (minimal, non-OOP) === */
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: transparent;
+    color: #222;
+}
+
+.white-box {
+    background: #fff;
+    border-radius: 6px;
+    padding: 18px;
+    margin-top: 15px;
+    color: #222;
+}
+
+/* Admin-specific override: make white-box dark in admin panels and style form buttons */
+.admin-grid .white-box {
+    background: linear-gradient(180deg, rgba(12, 12, 12, 0.9), rgba(28, 28, 28, 0.85));
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.admin-grid .white-box h2 {
+    color: #fff200;
+    margin-top: 0;
+}
+
+.admin-grid .white-box input[type="text"],
+.admin-grid .white-box input[type="email"],
+.admin-grid .white-box input[type="tel"],
+.admin-grid .white-box input[type="date"],
+.admin-grid .white-box input[type="password"],
+.admin-grid .white-box select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* Date input specific improvements - matching other inputs */
+.admin-grid .white-box input[type="date"],
+input[type="date"] {
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Global date input styling for dark theme */
+.page-reservas input[type="date"],
+.admin-grid input[type="date"] {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Calendar icon styling - make it more visible and interactive */
+.admin-grid .white-box input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1) brightness(1.1);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.admin-grid .white-box input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* ========== FILE INPUT STYLING ========== */
+.admin-grid .white-box input[type="file"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.admin-grid .white-box input[type="file"]:hover,
+input[type="file"]:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Style the file input button */
+.admin-grid .white-box input[type="file"]::file-selector-button,
+input[type="file"]::file-selector-button {
+    padding: 8px 16px;
+    margin-right: 12px;
+    background: linear-gradient(135deg, rgba(255, 242, 0, 0.85), rgba(255, 242, 0, 0.7));
+    color: #222;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.admin-grid .white-box input[type="file"]::file-selector-button:hover,
+input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(135deg, rgba(255, 242, 0, 1), rgba(255, 242, 0, 0.85));
+    box-shadow: 0 4px 12px rgba(255, 242, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Webkit browsers (older syntax) */
+.admin-grid .white-box input[type="file"]::-webkit-file-upload-button,
+input[type="file"]::-webkit-file-upload-button {
+    padding: 8px 16px;
+    margin-right: 12px;
+    background: linear-gradient(135deg, rgba(255, 242, 0, 0.85), rgba(255, 242, 0, 0.7));
+    color: #222;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.admin-grid .white-box input[type="file"]::-webkit-file-upload-button:hover,
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: linear-gradient(135deg, rgba(255, 242, 0, 1), rgba(255, 242, 0, 0.85));
+    box-shadow: 0 4px 12px rgba(255, 242, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+
+/* Make the create/save button in the white-box clearly green to differentiate it */
+.admin-grid .white-box .btn-primary {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.admin-grid .white-box .btn-primary:hover {
+    filter: brightness(.95);
+}
+
+.admin-grid .white-box .btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.btn-new {
+    background: #28a745;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-edit {
+    background: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.alert-error {
+    background: #ffdddd;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.alert-success {
+    background: #ddffdd;
+    color: #009900;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(180deg, rgba(12, 12, 12, 0.6), rgba(22, 22, 22, 0.6));
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-table thead th {
+    background: rgba(12, 12, 12, 0.9);
+    color: #fff200;
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.admin-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: #fff;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.no-users {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+}
+
+/* small utility */
+.muted-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
 
 /* Scoped header fixes for sala pages to avoid breaking global header */
 .page-sala header {
@@ -407,9 +693,10 @@ footer {
     gap: 16px;
     padding: 18px 32px;
     box-sizing: border-box;
-    background: rgba(0,0,0,0.25);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    flex-wrap: wrap; /* permite que elementos no se solapen */
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    flex-wrap: wrap;
+    /* permite que elementos no se solapen */
 }
 
 .page-sala header span {
@@ -418,12 +705,15 @@ footer {
 }
 
 .page-sala header h1 {
-    flex: 1 1 400px; /* ocupar espacio central y ser responsivo */
+    flex: 1 1 400px;
+    /* ocupar espacio central y ser responsivo */
     text-align: center;
     margin: 0;
 }
 
-.page-sala header form { flex: 0 0 auto; }
+.page-sala header form {
+    flex: 0 0 auto;
+}
 
 /* ---------------- PANEL IZQUIERDO ---------------- */
 .info-sala {
@@ -432,7 +722,7 @@ footer {
     background: rgba(68, 68, 68, 0.75);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
     min-height: 260px;
 }
 
@@ -452,7 +742,7 @@ footer {
     background: rgba(85, 85, 85, 0.65);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
     min-height: 400px;
 }
 
@@ -502,16 +792,10 @@ footer {
     color: inherit;
 }
 
-.btn-toggle {
-    /* background: #f8c300; */
-    /* color: #222; */
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-weight: bold;
-    text-decoration: none;
+.info-sala .btn-toggle {
+    display: inline-block;
+    margin: 4px 4px 4px 0;
+    white-space: nowrap;
 }
 
 .btn-toggle:disabled {
@@ -619,14 +903,22 @@ body {
     justify-content: space-between;
 }
 
+/* Page-specific override: avoid large vertical gaps on sala/admin pages caused
+   by the global `justify-content: space-between` on body. Use flex-start so
+   header and main stay together at the top. */
+body.page-sala {
+    justify-content: flex-start;
+}
 
-header, footer {
-        background: rgba(58, 58, 58, 0.95);
-        color: #fff200;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+header,
+footer {
+    background: rgba(58, 58, 58, 0.95);
+    color: #fff200;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header span {
@@ -638,13 +930,14 @@ footer {
     justify-content: center;
 }
 
-.html-login, .body-login {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background: #545557;
-        font-family: 'Segoe UI', Arial, sans-serif;
-    }
+.html-login,
+.body-login {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #545557;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
 
 
 .container {
@@ -655,13 +948,13 @@ footer {
     transform: translate(-50%, -50%);
     background-size: cover;
     background-position: center;
-    width: 97%; 
-    height: 97%; 
+    width: 97%;
+    height: 97%;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 24px;
-    box-shadow: 0 40px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 40px 40px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -683,15 +976,15 @@ footer {
     padding-right: 100px;
     width: 100%;
     min-height: 95%;
-    box-shadow: 0 40px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 40px 40px rgba(0, 0, 0, 0.08);
     /* background: #fff; */
     border-radius: 24px;
     overflow: hidden;
 }
 
-  
-    /* BOTON CERRAR SESION */
-  
+
+/* BOTON CERRAR SESION */
+
 .btn-cerrar {
     background-color: #fff200;
     border: none;
@@ -708,14 +1001,14 @@ footer {
 
 /* BOTON VOLVER */
 
-    .button-volver {
-        background: #666;
-        color: white;
+.button-volver {
+    background: #666;
+    color: white;
 }
 
 .button-volver:hover {
-        background: #444;
-        color: #fff200;
+    background: #444;
+    color: #fff200;
 }
 
 
@@ -875,12 +1168,14 @@ footer {
     /* separa los botones de los márgenes izquierdo/derecho */
     padding: 20px 40px;
     box-sizing: border-box;
-    flex-wrap: wrap; /* permitir varias filas */
+    flex-wrap: wrap;
+    /* permitir varias filas */
 }
 
 .boton-sala {
     /* background-color: #ccc; */
-    width: 220px; /* tamaño fijo más razonable */
+    width: 220px;
+    /* tamaño fijo más razonable */
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -914,6 +1209,7 @@ footer {
 #boton-sala2:hover {
     box-shadow: 0px 0px 50px 1px rgba(0, 255, 0, 0.8);
 }
+
 #boton-sala3 {
     /* background-color: #fff200; */
     background-image: url(./../img/Logo_SalaPrivada.png);
@@ -928,7 +1224,7 @@ footer {
 
 .boton-sala:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .boton-sala img {
@@ -942,7 +1238,8 @@ footer {
    Evita sobrecargar las clases globales y agrupa estilos
    exclusivos del selector de salas.
    ====================================================== */
-.selector-salas { /* contenedor principal para el selector */
+.selector-salas {
+    /* contenedor principal para el selector */
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
@@ -951,7 +1248,8 @@ footer {
     padding: 18px 24px;
 }
 
-.selector-sala-item { /* contenedor por sala (nombre + botón) */
+.selector-sala-item {
+    /* contenedor por sala (nombre + botón) */
     width: 220px;
     display: flex;
     flex-direction: column;
@@ -967,21 +1265,22 @@ footer {
     text-transform: capitalize;
 }
 
-.selector-sala-button { /* botón que contiene la imagen */
+.selector-sala-button {
+    /* botón que contiene la imagen */
     width: 100%;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background: rgba(0,0,0,0.12);
+    background: rgba(0, 0, 0, 0.12);
     text-decoration: none;
     transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .selector-sala-button:hover {
     transform: translateY(-6px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 .selector-sala-button img {
@@ -1134,6 +1433,7 @@ footer {
     background: rgba(156, 39, 176, 0.8);
     color: #fff;
 }
+
 /* =============================================== */
 /* NUEVO RESPONSIVE MEJORADO                      */
 /* =============================================== */
@@ -1174,7 +1474,7 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}    
+}
 
 .body-johto {
     background-image: url('./../img/regiones/Johto.png');
@@ -1216,7 +1516,7 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}    
+}
 
 /* ||||||||||||||||||||||||||| AZUL ||||||||||||||||||||||||| */
 .body-sinnoh h1,
@@ -1226,16 +1526,22 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-sinnoh .btn, .body-sinnoh .btn-link,
-.body-hoenn .btn, .body-hoenn .btn-link,
-.body-galar .btn, .body-galar .btn-link {
+.body-sinnoh .btn,
+.body-sinnoh .btn-link,
+.body-hoenn .btn,
+.body-hoenn .btn-link,
+.body-galar .btn,
+.body-galar .btn-link {
     background: #2196F3;
     color: #fff;
 }
 
-.body-sinnoh .btn:hover, .body-sinnoh .btn-link:hover,
-.body-hoenn .btn:hover, .body-hoenn .btn-link:hover,
-.body-galar .btn:hover, .body-galar .btn-link:hover {
+.body-sinnoh .btn:hover,
+.body-sinnoh .btn-link:hover,
+.body-hoenn .btn:hover,
+.body-hoenn .btn-link:hover,
+.body-galar .btn:hover,
+.body-galar .btn-link:hover {
     background: #1976D2;
 }
 
@@ -1274,7 +1580,7 @@ h1 {
     border: 2px solid #2196F3;
 }
 
-.body-sinnoh .volver a:hover, 
+.body-sinnoh .volver a:hover,
 .body-hoenn .volver a:hover,
 .body-galar .volver a:hover {
     background: #2196F3;
@@ -1290,16 +1596,22 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-unova .btn, .body-unova .btn-link,
-.body-alola .btn, .body-alola .btn-link,
-.body-kanto .btn, .body-kanto .btn-link {
+.body-unova .btn,
+.body-unova .btn-link,
+.body-alola .btn,
+.body-alola .btn-link,
+.body-kanto .btn,
+.body-kanto .btn-link {
     background: #fff200;
     color: #222;
 }
 
-.body-unova .btn:hover, .body-unova .btn-link:hover,
-.body-alola .btn:hover, .body-alola .btn-link:hover,
-.body-kanto .btn:hover, .body-kanto .btn-link:hover {
+.body-unova .btn:hover,
+.body-unova .btn-link:hover,
+.body-alola .btn:hover,
+.body-alola .btn-link:hover,
+.body-kanto .btn:hover,
+.body-kanto .btn-link:hover {
     background: #e6b800;
 }
 
@@ -1346,14 +1658,18 @@ h1 {
 
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-kalos .btn, .body-kalos .btn-link,
-.body-johto .btn, .body-johto .btn-link {
+.body-kalos .btn,
+.body-kalos .btn-link,
+.body-johto .btn,
+.body-johto .btn-link {
     background: #E91E63;
     color: #fff;
 }
 
-.body-kalos .btn:hover, .body-kalos .btn-link:hover,
-.body-johto .btn:hover, .body-johto .btn-link:hover {
+.body-kalos .btn:hover,
+.body-kalos .btn-link:hover,
+.body-johto .btn:hover,
+.body-johto .btn-link:hover {
     background: #C2185B;
 }
 
@@ -1414,13 +1730,15 @@ h1 {
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.body-paldea .btn, .body-paldea .btn-link {
-    
+.body-paldea .btn,
+.body-paldea .btn-link {
+
     background: #9C27B0;
     color: #fff;
 }
 
-.body-paldea .btn:hover, .body-paldea .btn-link:hover {
+.body-paldea .btn:hover,
+.body-paldea .btn-link:hover {
     background: #7B1FA2;
 }
 
@@ -1454,7 +1772,8 @@ h1 {
     color: #fff;
 }
 
-header, footer {
+header,
+footer {
     background: rgba(58, 58, 58, 0.95);
     color: #fff200;
     padding: 10px 20px;
@@ -1466,13 +1785,15 @@ header, footer {
 header span {
     font-weight: bold;
 }
+
 footer {
     font-size: 14px;
     justify-content: center;
 }
 
 /* ---------------- BOTONES Y ENLACES ---------------- */
-.btn, .btn-link {
+.btn,
+.btn-link {
     display: inline-block;
     margin: 0 15px;
     padding: 12px 25px;
@@ -1531,7 +1852,7 @@ footer {
     background: rgba(68, 68, 68, 0.75);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
     min-height: 260px;
 }
 
@@ -1549,7 +1870,7 @@ footer {
     background: rgba(85, 85, 85, 0.65);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
     min-height: 400px;
 }
 
@@ -1614,6 +1935,7 @@ footer {
     cursor: not-allowed;
     color: #666;
 }
+
 
 /* ---------------- VOLVER ---------------- */
 .volver {
@@ -1735,13 +2057,13 @@ footer {
 
 /* Espacio y simetría en las mesas */
 .mesas-container {
-    gap: 16px !important;           
-    padding: 16px !important;       
+    gap: 16px !important;
+    padding: 16px !important;
 }
 
 .mesas-container .mesa {
     box-sizing: border-box;
-    border-radius: 10px;            
+    border-radius: 10px;
 }
 
 
@@ -1767,7 +2089,7 @@ footer {
     .contenedor-principal {
         display: flex;
         flex-direction: column;
-        align-items: stretch;       
+        align-items: stretch;
         padding: 20px;
         gap: 25px;
     }
@@ -1823,7 +2145,7 @@ footer {
         font-size: 0.85rem;
     }
 
-    
+
 }
 
 /* Historial tables (global and per-mesa/per-sala) */
@@ -1832,7 +2154,7 @@ footer {
     padding: 18px 20px;
     margin: 0 0 12px 0;
     font-size: 1.6rem;
-    background: linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
     color: #fff200;
 }
 
@@ -1840,25 +2162,1166 @@ footer {
     width: 100%;
     border-collapse: collapse;
     margin: 12px 0 30px 0;
-    background: rgba(34,34,34,0.6);
+    background: rgba(34, 34, 34, 0.6);
     border-radius: 10px;
     overflow: hidden;
 }
+
 .table-historial thead th {
-    background: linear-gradient(90deg,#333,#222);
+    background: linear-gradient(90deg, #333, #222);
     color: #fff200;
     padding: 12px 14px;
     text-align: left;
     font-weight: 700;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
+
 .table-historial tbody td {
     padding: 10px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     color: #fff;
 }
-.table-historial tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-.table-historial tbody tr:hover { background: rgba(255,255,255,0.03); }
 
-.historial-actions { margin: 18px 0; text-align: center; }
-.historial-actions a { color: #fff200; text-decoration: none; font-weight: 700; }
+.table-historial tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.table-historial tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.historial-actions {
+    margin: 18px 0;
+    text-align: center;
+}
+
+.historial-actions a {
+    color: #fff200;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* ================= ADMIN: admin_mesas layout ================= */
+.contenedor-principal.admin-grid {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 12px 20px;
+    width: calc(100% - 60px);
+    margin: 0 auto;
+    /* Removed top margin */
+    max-width: none;
+}
+
+/* Specific fix for Reservas page to remove extra gap */
+.page-reservas .contenedor-principal.admin-grid {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.admin-grid .info-sala {
+    flex: 0 0 360px;
+    max-width: 360px;
+    background: rgba(23, 23, 23, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.admin-grid .info-sala h2 {
+    margin-top: 0;
+}
+
+.admin-grid .mesas-container {
+    flex: 1;
+    background: rgba(34, 34, 34, 0.5);
+    padding: 2px;
+    border-radius: 10px;
+    min-height: 300px;
+    box-shadow: none;
+}
+
+.admin-grid .mesas-table-wrapper {
+    overflow: visible;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-grid .table-historial {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    min-width: 0;
+}
+
+.admin-grid .table-historial thead th,
+.admin-grid .table-historial tbody td {
+    padding: 12px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    word-wrap: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-grid .table-historial th,
+.admin-grid .table-historial td {
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.admin-grid .table-historial thead th {
+    background: linear-gradient(90deg, #222, #333);
+    color: #fff200;
+    text-align: left;
+}
+
+.admin-grid .table-historial tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-grid .table-historial tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-grid .form-actions {
+    margin-top: 10px;
+}
+
+.admin-grid .sala-select {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 900px) {
+    .contenedor-principal.admin-grid {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .admin-grid .info-sala {
+        max-width: none;
+        width: 100%;
+    }
+
+    .admin-grid .table-historial {
+        min-width: 100%;
+    }
+}
+
+/* ================= ADMIN: visual polish ================= */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, rgba(12, 12, 12, 0.9), rgba(22, 22, 22, 0.9));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.admin-header h1 {
+    margin: 0;
+    color: #fff200;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.admin-header .toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-header .toolbar form {
+    margin: 0;
+}
+
+.admin-grid .info-sala {
+    background: linear-gradient(180deg, rgba(18, 18, 18, 0.85), rgba(28, 28, 28, 0.82));
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.admin-grid .mesas-container {
+    background: linear-gradient(180deg, rgba(24, 24, 24, 0.6), rgba(12, 12, 12, 0.6));
+    padding: 2px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.admin-grid .mesas-container h2 {
+    margin: 0 0 8px 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-grid .mesas-container .badge {
+    background: #fff200;
+    color: #111;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Inputs and labels in admin panel */
+.admin-grid label {
+    display: block;
+    margin-top: 12px;
+    color: #ddd;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.admin-grid input[type="text"],
+.admin-grid input[type="number"],
+.admin-grid select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.admin-grid .form-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(90deg, #fff200, #ffd400);
+    color: #111;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    font-weight: 800;
+}
+
+.btn-primary:hover {
+    filter: brightness(.95);
+}
+
+.btn-danger {
+    background: linear-gradient(90deg, #ff6b6b, #ff4b4b);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    font-weight: 700;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Admin-specific button contrast overrides (high-visibility on dark backgrounds) */
+.admin-grid .btn,
+.admin-header .btn,
+.admin-header .btn-ghost,
+.admin-header .btn-primary {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.admin-grid .btn {
+    background: rgba(255, 242, 0, 0.95);
+    color: #111;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.admin-grid .btn:hover {
+    filter: brightness(.95);
+    transform: translateY(-2px);
+}
+
+.admin-grid a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-grid .btn-danger {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.admin-header .btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.admin-header .btn-primary {
+    background: linear-gradient(90deg, #fff200, #ffd400);
+    color: #111;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Ensure action buttons in table are visible */
+.admin-grid .action-buttons .btn {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+}
+
+.admin-grid .action-buttons .btn.js-delete {
+    background: linear-gradient(90deg, #ff6b6b, #ff4b4b);
+    color: #fff;
+}
+
+.admin-grid .action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Table polish */
+.admin-grid .mesas-table-wrapper {
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(12, 12, 12, 0.2), rgba(18, 18, 18, 0.2));
+    padding: 8px;
+    overflow: visible;
+}
+
+.admin-grid .table-historial thead th {
+    background: rgba(12, 12, 12, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.admin-grid .table-historial tbody td {
+    vertical-align: middle;
+}
+
+.admin-grid .table-historial tbody tr td:first-child {
+    width: 80px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.admin-grid .table-historial tbody tr td:nth-child(2) {
+    width: auto;
+}
+
+.admin-grid .table-historial tbody tr td:nth-child(3) {
+    width: 110px;
+    text-align: center;
+}
+
+.admin-grid .table-historial tbody tr td:nth-child(4) {
+    width: 120px;
+    text-align: center;
+}
+
+.admin-grid .table-historial tbody tr td:last-child {
+    width: 220px;
+}
+
+.admin-grid .table-historial td,
+.admin-grid .table-historial th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .contenedor-principal.admin-grid {
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .admin-grid .info-sala,
+    .admin-grid .mesas-container {
+        width: 100%;
+    }
+
+    .admin-grid .table-historial tbody tr td:last-child {
+        width: auto;
+    }
+}
+
+/* Selector-salas: make sala items full-width blocks in admin view */
+.admin-grid .selector-salas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 18px;
+    align-items: center;
+}
+
+.admin-grid .selector-sala-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    font-weight: 700;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-grid .selector-sala-pill:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.admin-grid .selector-sala-pill.active {
+    background: linear-gradient(90deg, #fff200, #ffd400);
+    color: #222;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ensure table fits on very small screens by allowing cell wrap and stacking when narrow */
+@media (max-width: 600px) {
+    .admin-grid .table-historial thead {
+        display: none;
+    }
+
+    .admin-grid .table-historial,
+    .admin-grid .table-historial tbody,
+    .admin-grid .table-historial tr,
+    .admin-grid .table-historial td {
+        display: block;
+        width: 100%;
+    }
+
+    .admin-grid .table-historial tr {
+        margin-bottom: 12px;
+        padding: 10px;
+        background: rgba(12, 12, 12, 0.25);
+        border-radius: 8px;
+    }
+
+    .admin-grid .table-historial td {
+        padding: 8px 10px;
+        text-align: left;
+    }
+
+    .admin-grid .table-historial td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        display: block;
+        color: #fff200;
+        margin-bottom: 6px;
+    }
+}
+
+/* ============================================================ */
+
+/* TABLA DE SALAS - Estilos específicos sin conflictos */
+.admin-salas-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    min-height: 300px;
+}
+
+.admin-salas-section h2 {
+    margin: 0 0 12px 0;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.salas-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.salas-table thead th {
+    background: rgba(12, 12, 12, 0.9);
+    color: #fff200;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.salas-table tbody td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.salas-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.salas-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.salas-table th:first-child,
+.salas-table td:first-child {
+    width: 12%;
+}
+
+.salas-table th:nth-child(2),
+.salas-table td:nth-child(2) {
+    width: 38%;
+}
+
+.salas-table th:last-child,
+.salas-table td:last-child {
+    width: 50%;
+    text-align: center;
+}
+
+/* DASHBOARD STYLES (from admin_dashboard.php) */
+.dashboard {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+}
+
+.dashboard-header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Dashbord Card renamed to avoid conflict */
+.dashboard-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.dashboard-card .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.dashboard-card .card-icon {
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.dashboard-card .card-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .card-label {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.dashboard-card .card-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.dashboard-card .card-link:hover {
+    color: #764ba2;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.stat-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #667eea;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    text-decoration: none;
+    border: 2px solid transparent;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.menu-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.menu-desc {
+    font-size: 12px;
+    color: #999;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.rol-distribution {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.rol-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.rol-bar {
+    flex: 1;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rol-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.rol-admin {
+    background-color: #dc3545;
+}
+
+.rol-gerent {
+    background-color: #fd7e14;
+}
+
+.rol-camarero {
+    background-color: #007bff;
+}
+
+.rol-manteniment {
+    background-color: #6f42c1;
+}
+
+.rol-caixa {
+    background-color: #20c997;
+}
+
+.rol-label {
+    min-width: 100px;
+    font-weight: bold;
+    color: #333;
+}
+
+.footer {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.user-info {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.logout-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ======= OVERRIDE FINAL: margen superior equilibrado en páginas de sala/reservas ======= */
+
+/* 1) Asegurar layout vertical normal para estas páginas */
+html body.page-sala,
+html body.page-salas,
+html body.page-reservas {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    /* evita space-between que crea huecos */
+}
+
+/* 2) Asegurar header sticky y que no superponga el main */
+html body.page-sala header,
+html body.page-salas header,
+html body.page-reservas header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+
+/* 3) Margen/padding superior equilibrado del contenedor principal
+   Se deja un pequeño margen visual sin cortar contenido.
+   Ajusta los valores (12px / 12px) si quieres un poco más/menos. */
+html body.page-sala .contenedor-principal,
+html body.page-salas .contenedor-principal,
+html body.page-reservas .contenedor-principal {
+    margin-top: 12px !important;
+    padding-top: 12px !important;
+    box-sizing: border-box !important;
+}
+
+/* 4) Evitar que títulos internos empujen extra hacia abajo */
+html body.page-sala .contenedor-principal>h1,
+html body.page-salas .contenedor-principal>h1,
+html body.page-reservas .contenedor-principal>h1,
+html body.page-sala .contenedor-principal h2:first-child,
+html body.page-salas .contenedor-principal h2:first-child,
+html body.page-reservas .contenedor-principal h2:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 5) Si el header por alguna razón está sobreponiéndose al contenido,
+   esto garantiza que main no quede cortado (adds safe offset). */
+html body.page-sala .contenedor-principal,
+html body.page-salas .contenedor-principal,
+html body.page-reservas .contenedor-principal {
+    /* safe offset: si ves que algo sigue cortado sube este valor +4px */
+    padding-top: calc(12px + 0px) !important;
+}
+
+/* Optional: si quieres un margen aún más suave, usa 10px en ambos valores */
+
+/* ============================================================================
+   ESTILOS GLOBALES PARA TODAS LAS TABLAS - v2.1 CON PRIORIDAD
+   ============================================================================ */
+
+.salas-table,
+.admin-table,
+.table-historial {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+.salas-table thead,
+.admin-table thead,
+.table-historial thead {
+    background: rgba(255, 242, 0, 0.15) !important;
+}
+
+.salas-table thead th,
+.admin-table thead th,
+.table-historial thead th {
+    padding: 12px 10px !important;
+    text-align: left !important;
+    font-weight: 600 !important;
+    color: #fff200 !important;
+    border-bottom: 2px solid rgba(255, 242, 0, 0.3) !important;
+    white-space: nowrap !important;
+}
+
+.salas-table tbody td,
+.admin-table tbody td,
+.table-historial tbody td {
+    padding: 12px 10px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+}
+
+.salas-table tbody tr:hover,
+.admin-table tbody tr:hover,
+.table-historial tbody tr:hover {
+    background: rgba(255, 242, 0, 0.05) !important;
+}
+
+/* Column widths */
+.salas-table th:nth-child(1),
+.salas-table td:nth-child(1) {
+    width: 15%;
+    min-width: 100px;
+}
+
+.salas-table th:nth-child(2),
+.salas-table td:nth-child(2) {
+    width: 15%;
+    min-width: 80px;
+}
+
+.salas-table th:nth-child(3),
+.salas-table td:nth-child(3) {
+    width: 15%;
+    min-width: 80px;
+}
+
+.salas-table th:nth-child(4),
+.salas-table td:nth-child(4) {
+    width: 35%;
+    min-width: 150px;
+}
+
+.salas-table th:nth-child(5),
+.salas-table td:nth-child(5) {
+    width: 20%;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Responsive para tablets y móviles */
+@media screen and (max-width: 1024px) {
+
+    .mesas-list,
+    .mesas-table-wrapper,
+    .admin-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .salas-table,
+    .admin-table,
+    .table-historial {
+        min-width: 700px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .salas-table,
+    .admin-table,
+    .table-historial {
+        min-width: 650px;
+        font-size: 14px;
+    }
+
+    .salas-table thead th,
+    .salas-table tbody td,
+    .admin-table thead th,
+    .admin-table tbody td,
+    .table-historial thead th,
+    .table-historial tbody td {
+        padding: 10px 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .salas-table,
+    .admin-table,
+    .table-historial {
+        min-width: 600px;
+        font-size: 13px;
+    }
+
+    .salas-table thead th,
+    .salas-table tbody td,
+    .admin-table thead th,
+    .admin-table tbody td,
+    .table-historial thead th,
+    .table-historial tbody td {
+        padding: 8px 6px;
+    }
+
+    .btn-danger {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ---------------- RESERVAS PAGE & LIST STYLES ---------------- */
+
+/* Status Text */
+.status-disponible {
+    color: #4cd964;
+    font-weight: bold;
+    display: inline-block;
+    padding: 4px 8px;
+    background: rgba(76, 217, 100, 0.1);
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Reservation List Container */
+.lista-reservas {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0;
+    width: 100%;
+}
+
+/* Individual Reservation Box - GRID layout for stability */
+.item-reserva {
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Dark background */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle border */
+    border-radius: 6px;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    /* Text takes remaining space, button takes natural width */
+    gap: 15px;
+    align-items: center;
+}
+
+/* Hover effect */
+.item-reserva:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Left side: Information */
+.reserva-info {
+    min-width: 0;
+    /* Required for text truncation in grid items */
+}
+
+/* Time Range */
+.reserva-info strong {
+    color: #ffd700;
+    /* Yellow accent */
+    font-size: 1.05em;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* User Details */
+.reserva-detalles {
+    font-size: 0.9em;
+    color: #ccc;
+    display: block;
+    line-height: 1.4;
+
+    /* Optional: Truncate text if too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Right side: Button Container */
+.reserva-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Cancel Button Styling */
+.reserva-acciones .btn-danger {
+    font-size: 0.75em;
+    padding: 6px 12px;
+    margin: 0;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    min-width: 80px;
+    /* Ensure button doesn't get too squashed */
+    text-align: center;
+}
+
+/* Reserve Button (for the table 'Action' column) */
+.btn-reservar-mesa {
+    background-color: #fff200;
+    /* Yellow theme */
+    color: #222;
+    /* Dark text */
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85em;
+    white-space: nowrap;
+}
+
+.btn-reservar-mesa:hover {
+    background-color: #e6b800;
+    /* Darker yellow/orange on hover */
+    box-shadow: 0 0 8px rgba(255, 242, 0, 0.5);
+}
+
+/* Reservas filter form layout */
+.page-reservas .form-filtros .filters-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+/* Group labels with inputs to avoid breaks */
+.page-reservas .form-filtros .filters-row .filter-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+.page-reservas .form-filtros .filters-row .filter-group select,
+.page-reservas .form-filtros .filters-row .filter-group input {
+    min-width: 140px;
+}
+.page-reservas .form-filtros .filters-actions { margin-left: auto; white-space: nowrap; }
+.page-reservas .form-filtros label {
+    font-weight: 600;
+}
+.page-reservas .form-filtros select,
+.page-reservas .form-filtros input[type="date"],
+.page-reservas .form-filtros input[type="number"] {
+    padding: 6px 8px;
+}
+.page-reservas .form-filtros .input-sillas { width: 100px; }
+.page-reservas .form-filtros .ml-8 { margin-left: 8px; }
+.page-reservas .form-filtros .filters-actions {
+        display: inline-flex;
+        gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .page-reservas .form-filtros .filters-row {
+        gap: 10px 12px;
+    }
+    .page-reservas .form-filtros .filters-actions {
+        width: 100%;
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+}
